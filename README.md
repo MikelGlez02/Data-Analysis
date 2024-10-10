@@ -4,9 +4,9 @@ Data Processing Project in Python
 
 # Author's
 
-Miguel González Martínez (100451423)
+Miguel González Martínez (100451423), Carlos de Quinto ()
 
-# Description
+# Descripción
 
 This project is based on ...
 
