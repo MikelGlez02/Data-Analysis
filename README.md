@@ -6,7 +6,7 @@ Data Processing Project in Python
 
 Miguel González Martínez (100451423), Carlos de Quinto (100451547)
 
-# Descripción
+# Description
 
 This project is based on ...
 
