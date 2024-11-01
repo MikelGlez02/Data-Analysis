@@ -1,14 +1,26 @@
-# Data-Analysis
+# Proyecto Tratamiento de Datos 2024/25
 
 Data Processing Project in Python
 
-# Author's
+# Autores
 
 Miguel González Martínez (100451423), Carlos de Quinto (100451547)
 
-# Description
+# ¿En qué consiste el proyecto?
 
 This project is based on ...
+
+# Metodología utilizada
+
+A
+
+# Decisiones de implementación
+
+A
+
+# Resultados
+
+A
 
 
 
