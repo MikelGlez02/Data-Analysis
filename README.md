@@ -51,6 +51,7 @@ User Manual
 Run the application with
 
 python run_labeler.py [--project_path PROJECT_PATH] [--url URL] [--user USER] [--tm TM]
+
 Options are:
 
 --project_path: The path to the labeling project folder. If it is not specified, the application will ask for it.
