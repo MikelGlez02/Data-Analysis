@@ -32,46 +32,15 @@ así como pasos repetidos.
 • Explorar el potencial de técnicas de NLP como el uso de bigramas, part-ofspeech tagging, tesauros, etc., (explotando, por ejemplo, la funcionalidad disponible en la librería NLTK de Python).
 • Comparación de prestaciones utilizando distintos embeddings contextuales, y visualización y análisis empleando técnicas basadas en grafos.
 
-Tome esta lista como una mera sugerencia, puede elegir cualquier otro tema siempre que encaje dentro del ´ambito de la asignatura. En el trabajo de extensi´on se valorar´a la creatividad y originalidad en la elección. Si tiene dudas sobre la idoneidad de la extensión elegida, consulte con el profesor.
+Tome esta lista como una mera sugerencia, puede elegir cualquier otro tema siempre que encaje dentro del ´ambito de la asignatura. En el trabajo de extensión se valorará la creatividad y originalidad en la elección. Si tiene dudas sobre la idoneidad de la extensión elegida, consulte con el profesor.
 
 # Metodología aplicada
 
-Procesamiento de los datos, modelos utilizados,
+Procesamiento de los datos, modelos utilizados, etc
 
-# Análisis de Resultados
+# Organización del Proyecto
 
-A
-
-# Bibliografía
-
-
-User Manual
-
-1. Usage:
-Run the application with
-
-python run_labeler.py [--project_path PROJECT_PATH] [--url URL] [--user USER] [--tm TM]
-
-Options are:
-
---project_path: The path to the labeling project folder. If it is not specified, the application will ask for it.
---url: A single url to be labeled. This option can be used to revise urls that have been wrongly labeled in a previous labeling session.
---user: Name identifying the labelling user. To use this option, you must select track_user: yes in the configuration file.
---tm: Transfer mode. Specifies the criterium used to import new data from the input folder. Available options are:
-expand : All urls existing in the input folder are integrated into the dataset. This is the default option.
-project : New URLs cannot be added to the dataset, but only information about labels or predictions.
-contract: Only urls in the input folder are preserved in the data structure.
-If the project folder does not exist, the application will create a new one, adding a copy of the default configuration file, and the execution stops so that the user can edit the configuration file (if applicable) and add some input file with urls to label.
-
-Load the database.
-Data import.
-Data integration.
-Selection of labels.
-Labeling
-Close.
-
-2. Folder Structure
-The application is integrated in the following folder structure
+Se ha organizado de la siguiente manera:
 
 run_labeler.py
 config.cf.default
@@ -88,22 +57,14 @@ common/lib/__init__.py
                            /labelprocessor.py
                            /LabelViewGeneric.py
                            /urlsampler.py
-These are the minimal files required to run de labelling application. Besides of them, the application contains two data managmment tools,
-
-run_db2file.py
-run_file2db.py
-run_pkl2json.py
-and, also, a tool for analyzing the labeled dataset
+                           
+These are the minimal files required to run de labelling application. Besides of them, the application contains two data managmment tools, and a tool for analyzing the labeled dataset
 
 run_analizer.py
 common/lib/__init__.py
           /dataanalyzer/__init__.py
                        /ROCanalyzer.py
 
-2. Databases and data files.
-The input data and the results of the labelling application are usually stored in a mongo database or in a set of files.
-
-2.1. Complete project file struture
 The complete data structure for a labelling project is the following:
 
     project_path/.
@@ -147,11 +108,32 @@ used: It stores copies of all input files
 (the name of these folders can be specified in the configuration file).
 
 
-3. Configuration file:
-The configuration file is
+# Compilación/Ejecución del Proyecto
 
-config.cf
-and must be located at the project folder. If it does not exist, the application creates one by copying a default configuration file (namely, file config.cf.default from the aplication folder structure). This file must be edited and adapted to the current labeling task.
+python main.py [--project_path PROJECT_PATH] [--url URL] [--user USER] [--tm TM]
 
-This file contains several field, whose contents can be modified. The are described in the following secctions.
+--project_path: El arichivo del proyecto, el cual si no viene definido como tal, la aplicación lo preguntará.
+--url: A single url to be labeled. This option can be used to revise urls that have been wrongly labeled in a previous labeling session.
+--user: Nombre del usuario. Para usar esa opción, se usa track_user: en el archivo de configuración.
+--tm: Modo de transferencia. Specifies the criterium used to import new data from the input folder. Available options are:
+          expand : All urls existing in the input folder are integrated into the dataset. This is the default option.
+          project : New URLs cannot be added to the dataset, but only information about labels or predictions.
+          contract: Only urls in the input folder are preserved in the data structure.
+
+# Análisis de Resultados
+
+... The input data and the results of the labelling application are usually stored in a MongoDB or in a set of files.
+
+# Bibliografía
+
+Load the database.
+Data import.
+Data integration.
+Selection of labels.
+Labeling
+Close.
+
+# Archivo de Configuración 
+
+The configuration file is config.cf and must be located at the project folder. If it does not exist, the application creates one by copying a default configuration file (namely, file config.cf.default from the aplication folder structure). This file must be edited and adapted to the current labeling task. This file contains several field, whose contents can be modified. The are described in the following sections.
 
