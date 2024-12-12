@@ -1,5 +1,5 @@
 pip install pyspark # Install PySpark
-from pyspark.sql import SparkSession;  
+from pyspark.sql import SparkSession;  # Import PySpark
 spark = SparkSession.builder.appName('ETL Process').getOrCreate() # Start Spark Session
 
 df = spark.read.json('path/to/json') # Read data JSON
@@ -9,7 +9,7 @@ df.select('column1', 'column2') # Select Columns
 df.filter(df['column'] > value) # Filter Data
 df.withColumn('new_column', df['column'] + 10) # Insert New Column
 df.withColumnRenamed('old_name', 'new_name') # Rename
-df.groupBy('column').agg({'column2':'sum'})
+df.groupBy('column').agg({'column2':'sum'}) # Group data by column and agreggate a new column called sum
 df1.join(df2, df1['id'] == df2['id']) # Joining DataFrames
 df.orderBy(df['column'].desc()) # Sorting Duplicates
 df.dropDuplicates() # Removes
