@@ -64,26 +64,6 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
      - Algoritmos CART, SVM, PCA.
      - Filtros de Kalman y Particle.
 
-## Entrega
-1. **Estructura del Repositorio GitHub:**
-   - Código fuente bien organizado y documentado.
-   - Notebooks o scripts para la preparación de datos y experimentación.
-   - Resultados y análisis presentados en formato claro.
-
-2. **Documentación:**
-   - Archivo README.md con la descripción completa del proyecto.
-   - Posibilidad de crear una página en GitHub Pages para explicar el trabajo.
-
-3. **Fecha Límite:**
-   - 13 de diciembre de 2024, 23:59 horas.
-
-## Evaluación
-1. **Proyecto Básico (2,25 puntos):**
-   - Calidad de la metodología, documentación, y resultados obtenidos.
-
-2. **Extensiones (0,75 puntos):**
-   - Originalidad y calidad del trabajo adicional realizado.
-
 ## Instalación
 1. Clonar este repositorio:
    ```bash
@@ -118,9 +98,6 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 - **Despliegue:** Docker, Kubernetes.
 - **Validación de Datos:** Pydantic.
 - **Visualización:** Matplotlib, Seaborn.
-
-## Contribuciones
-Las contribuciones son bienvenidas. Por favor, abra un issue o realice un pull request para discutir cualquier mejora.
 
 ## Licencia
 Este proyecto se distribuye bajo la licencia MIT. Consulte el archivo LICENSE para más detalles.
