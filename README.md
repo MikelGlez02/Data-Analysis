@@ -1,4 +1,7 @@
-# Proyecto Final: Tratamiento de Datos 2024/25 (Miguel González Martínez, Carlos de Quinto Cáceres)
+# Proyecto Final: Tratamiento de Datos 2024/25
+
+## Autores
+Miguel González Martínez (100451423) y Carlos de Quinto Cáceres (100451547)
 
 ## Introducción
 Este proyecto forma parte del Máster en Ingeniería de Telecomunicación y tiene como objetivo aplicar técnicas avanzadas de procesamiento de datos y aprendizaje automático para resolver tareas relacionadas con documentos textuales. En este caso, se utilizará un conjunto de datos basado en recetas de cocina.
