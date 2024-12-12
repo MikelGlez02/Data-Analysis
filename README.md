@@ -157,6 +157,42 @@ ProyectoTD/
 - **Validación de Datos:** Pydantic.
 - **Visualización:** Matplotlib, Seaborn.
 
+## Bibliografía
+
+### Documentación y herramientas utilizadas
+
+1. **Python**: Lenguaje base del proyecto.
+   - [Python Documentation](https://docs.python.org/3/)
+
+2. **Jupyter Notebooks**: Para exploración interactiva.
+   - [Jupyter Documentation](https://jupyter.org/documentation)
+
+3. **MongoDB**: Base de datos para almacenamiento semiestructurado.
+   - [MongoDB Documentation](https://www.mongodb.com/docs/)
+
+4. **Kafka**: Mensajería en tiempo real.
+   - [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
+
+5. **Kubernetes**: Orquestación de contenedores.
+   - [Kubernetes Documentation](https://kubernetes.io/docs/)
+
+6. **PyTorch**: Framework de deep learning.
+   - [PyTorch Documentation](https://pytorch.org/docs/)
+
+7. **Scikit-learn**: Algoritmos clásicos de machine learning.
+   - [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
+
+8. **Docker**: Contenerización del proyecto.
+   - [Docker Documentation](https://docs.docker.com/)
+
+9. **Hugging Face Transformers**: Fine-tuning de modelos.
+   - [Hugging Face Documentation](https://huggingface.co/docs/transformers/)
+
+10. **jupytext**: Conversión entre notebooks y scripts.
+    - [Jupytext Documentation](https://jupytext.readthedocs.io/en/latest/)
+
+Esta bibliografía proporciona referencias clave sobre las herramientas utilizadas y sus documentaciones oficiales, ayudando a entender y extender las funcionalidades implementadas en este proyecto.
+
 ## Licencia
 Este proyecto se distribuye bajo la licencia MIT. Consulte el archivo LICENSE para más detalles.
 
