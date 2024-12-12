@@ -94,28 +94,26 @@ The complete data structure for a labelling project is the following:
                      /[cat2]_[labels|pred][codigo2].pkl
                      /[cat3]_[labels|pred][codigo3].pkl
                      ...
-The content of these files is explained in the following sections
 
-2.2 Main working folder
-We will call project_path to the path to the folder containing the labelling project (the name of this path can be specified in a configuration file, that is explained later). All data files related to the labelling process will be located in this folder.
+2.2 Carpeta principal de trabajo
+Llamaremos project_path a la ruta de la carpeta que contiene el proyecto de etiquetado (el nombre de esta ruta puede especificarse en un archivo de configuración, que se explicará más adelante). Todos los archivos de datos relacionados con el proceso de etiquetado estarán ubicados en esta carpeta.
 
-2.3 Subfolders
-The main project folder contains three subfolders:
+2.3 Subcarpetas
+La carpeta principal del proyecto contiene tres subcarpetas:
 
-input: It contains all input data
-output: It contains all output files
-used: It stores copies of all input files
-(the name of these folders can be specified in the configuration file).
-
+input: Contiene todos los datos de entrada
+output: Contiene todos los archivos de salida
+used: Almacena copias de todos los archivos de entrada
+(El nombre de estas carpetas puede especificarse en el archivo de configuración).
 
 # Compilación/Ejecución del Proyecto
 
 python main.py [--project_path PROJECT_PATH] [--url URL] [--user USER] [--tm TM]
 
---project_path: El arichivo del proyecto, el cual si no viene definido como tal, la aplicación lo preguntará.
---url: A single url to be labeled. This option can be used to revise urls that have been wrongly labeled in a previous labeling session.
+--project_path: El arichivo del proyecto. En caso de que no venga definido como tal, la aplicación lo preguntará.
+--url: Se puede usar para revisar los URLs que se han introducido.
 --user: Nombre del usuario. Para usar esa opción, se usa track_user: en el archivo de configuración.
---tm: Modo de transferencia. Specifies the criterium used to import new data from the input folder. Available options are:
+--tm: Modo de transferencia: criterio usado para importar los datos de la carpeta de entrada. Las posibles opciones son:
           expand : All urls existing in the input folder are integrated into the dataset. This is the default option.
           project : New URLs cannot be added to the dataset, but only information about labels or predictions.
           contract: Only urls in the input folder are preserved in the data structure.
