@@ -64,6 +64,64 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
      - Algoritmos CART, SVM, PCA.
      - Filtros de Kalman y Particle.
 
+## Estructura del Proyecto
+
+```plaintext
+ProyectoTD/
+│
+├── data/                     # Gestión de datos (puede ser opcional si todo se almacena en MongoDB)
+│   ├── raw/                  # Datos originales (JSON proporcionado)
+│   ├── processed/            # Datos procesados para modelos
+│
+├── kafka/                    # Configuración y scripts para Kafka
+│   ├── producer.py           # Productor Kafka
+│   ├── consumer.py           # Consumidor Kafka
+│   ├── topics/               # Configuración de tópicos
+│
+├── k8s/                      # Configuración de Kubernetes
+│   ├── deployment.yaml       # Despliegue de la aplicación
+│   ├── kafka.yaml            # Despliegue de Kafka
+│   ├── mongodb.yaml          # Despliegue de MongoDB
+│   ├── service.yaml          # Exposición de la aplicación y MongoDB
+│
+├── src/                      # Código fuente principal
+│   ├── __init__.py
+│   ├── main.py               # Punto de entrada principal
+│   ├── preprocessing/        # Preprocesamiento de datos
+│   │   ├── __init__.py
+│   │   ├── text_cleaner.py   # Limpieza y normalización de texto
+│   │   ├── embeddings.py     # Generación de embeddings
+│   │
+│   ├── models/               # Modelado y evaluación
+│   │   ├── __init__.py
+│   │   ├── regression.py     # Modelos de regresión (SVM, PyTorch)
+│   │   ├── transformers.py   # Fine-tuning con Transformers
+│   │
+│   ├── database/             # Integración con MongoDB
+│   │   ├── __init__.py
+│   │   ├── mongodb_handler.py # Gestión de operaciones en MongoDB
+│   │
+│   ├── utils/                # Utilidades
+│   │   ├── __init__.py
+│   │   ├── arg_parser.py     # Parsing de argumentos
+│   │   ├── logger.py         # Configuración de logs
+│   │   ├── version_checker.py # Comprobación de versiones de Python
+│
+├── tests/                    # Tests unitarios y de integración
+│   ├── test_preprocessing.py # Tests para el preprocesamiento
+│   ├── test_models.py        # Tests para los modelos
+│   ├── test_database.py      # Tests para las interacciones con MongoDB
+│
+├── Dockerfile                # Contenedor Docker para la aplicación principal
+├── docker-compose.yml        # Configuración para Kafka, MongoDB, y Zookeeper
+├── requirements.txt          # Dependencias del proyecto
+├── README.md                 # Documentación del proyecto
+├── setup.py                  # Configuración para convertirlo en paquete Python
+├── .env                      # Variables de entorno (con conexión a MongoDB)
+└── .gitignore                # Archivos a excluir en Git
+```
+
+
 ## Instalación
 1. Clonar este repositorio:
    ```bash
