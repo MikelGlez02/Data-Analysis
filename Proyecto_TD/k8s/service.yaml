@@ -1,1 +1,13 @@
-
+# k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipe-app-service
+spec:
+  selector:
+    app: recipe-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
