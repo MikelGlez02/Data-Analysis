@@ -157,7 +157,7 @@ ProyectoTD/
         ```bash
         python main.py evaluate --model_type pytorch --evaluation_metric mae
         ```
-        **Generar de nuevas recetas**
+        **Generar de nuevas recetas en tiempo real**
         ```bash
         python main.py generate_new_recipes
         ```
