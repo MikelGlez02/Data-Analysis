@@ -5,8 +5,8 @@ import sys
 from utils.arg_parser import parse_arguments
 from utils.logger import setup_logger
 from utils.version_checker import check_python_version
-from models.regression import train_regression_model
-from models.transformers import fine_tune_transformer
+from models.regression import train_regression_model, evaluate_regression_model
+from models.transformers import fine_tune_transformer, evaluate_transformer_model
 from preprocessing.data_analysis import analyze_relationships
 from preprocessing.text_cleaner import clean_text
 from preprocessing.embeddings import get_embeddings
@@ -58,8 +58,11 @@ def main():
         elif args.model_type == "transformers":
             fine_tune_transformer(epochs=args.epochs, batch_size=args.batch_size, learning_rate=args.learning_rate)
     elif args.mode == "evaluate":
-        logger.info("Starting evaluation...")
-        # Call evaluation function here
+        logger.info("Starting evaluation process...")
+        if args.model_type == "pytorch":
+            evaluate_regression_model(metric=args.evaluation_metric)
+        elif args.model_type == "transformers":
+            evaluate_transformer_model(metric=args.evaluation_metric)
     elif args.mode == "analyze":
         logger.info("Starting data analysis...")
         data = pd.DataFrame(db_handler.find_all())
