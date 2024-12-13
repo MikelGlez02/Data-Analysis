@@ -1,5 +1,6 @@
 # models/transformers.py
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import torch
 
 def fine_tune_transformer(epochs=20, batch_size=32, learning_rate=0.001):
@@ -32,3 +33,7 @@ def fine_tune_transformer(epochs=20, batch_size=32, learning_rate=0.001):
 
     # Fine-tuning
     trainer.train()
+
+def evaluate_transformer_model(metric="mae"):
+    # Placeholder for evaluation logic on Transformers
+    print(f"Transformer evaluation with metric: {metric} - Placeholder implementation.")
