@@ -144,6 +144,23 @@ ProyectoTD/
    - **Power BI:** Utilice los archivos `.pbix` en `powerbi-templates/` para configurar visualizaciones interactivas.
 
 6. Ejecución del proyecto:
+   - Se va a basar en diferentes ejecuciones según su implementación:
+     **Preprocesamiento de datos**
+     ```bash
+     python main.py preprocess --input_data data/raw/recipes.json --output_data data/processed/recipes_cleaned.json --preprocess_mode basic
+     ```
+     **Entrenamiento del modelo utilizado**
+     ```bash
+     python main.py train --model_type pytorch --vectorizer tfidf --epochs 20 --batch_size 32 --learning_rate 0.001
+     ```
+     **Evaluación del modelo**
+     ```bash
+     python main.py evaluate --model_type pytorch --evaluation_metric mae
+     ```
+     **Generación de nuevas recetas**
+     ```bash
+     python main.py evaluate --model_type pytorch --evaluation_metric mae
+     ```
    ```bash
    python main.py
    ```
