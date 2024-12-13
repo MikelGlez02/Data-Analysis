@@ -159,11 +159,8 @@ ProyectoTD/
      ```
      **Generación de nuevas recetas**
      ```bash
-     python main.py evaluate --model_type pytorch --evaluation_metric mae
+     python main.py
      ```
-   ```bash
-   python main.py
-   ```
 
 ## Herramientas y Librerías
 - **Procesamiento de texto:** NLTK, SpaCy, Gensim, Transformers.
