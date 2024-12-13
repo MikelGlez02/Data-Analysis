@@ -37,4 +37,39 @@ def analyze_relationships(data):
         plt.xlabel("Average Rating")
         plt.ylabel("Categories")
         plt.show()
+    # Word frequency in descriptions
+    if "desc" in data.columns:
+        from collections import Counter
+        from nltk.tokenize import word_tokenize
+        all_words = " ".join(data["desc"].dropna()).lower()
+        tokens = word_tokenize(all_words)
+        word_freq = Counter(tokens)
+        common_words = word_freq.most_common(20)
+        words, counts = zip(*common_words)
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x=list(counts), y=list(words), palette="mako")
+        plt.title("Most Common Words in Descriptions")
+        plt.xlabel("Frequency")
+        plt.ylabel("Words")
+        plt.show()
+    # Relationship between sodium and rating
+    if "sodium" in data.columns and "rating" in data.columns:
+        plt.figure(figsize=(10, 6))
+        sns.scatterplot(x="sodium", y="rating", data=data)
+        plt.title("Sodium vs Rating")
+        plt.xlabel("Sodium (mg)")
+        plt.ylabel("Rating")
+        plt.show()
+    # Temporal analysis of ratings by publication date
+    if "date" in data.columns and "rating" in data.columns:
+        data["date"] = pd.to_datetime(data["date"], errors="coerce")
+        if data["date"].notna().any():
+            avg_rating_by_date = data.groupby(data["date"].dt.to_period("M"))["rating"].mean()
+            plt.figure(figsize=(12, 6))
+            avg_rating_by_date.plot()
+            plt.title("Average Rating Over Time")
+            plt.xlabel("Date")
+            plt.ylabel("Average Rating")
+            plt.show()
+
 
