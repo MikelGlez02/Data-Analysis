@@ -11,6 +11,8 @@ from preprocessing.data_analysis import analyze_relationships
 from preprocessing.text_cleaner import clean_text
 from preprocessing.embeddings import get_embeddings
 from database.mongodb_handler import MongoDBHandler
+from kafka.producer import KafkaRecipeProducer
+from kafka.consumer import KafkaRecipeConsumer
 import pandas as pd
 
 def main():
@@ -68,8 +70,14 @@ def main():
         data = pd.DataFrame(db_handler.find_all())
         analyze_relationships(data)
     elif args.mode == "generate_new_recipes":
-        logger.info("Generating new recipes...")
-        # Call generation function here
+        logger.info("Generating new recipes in real-time using Kafka...")
+        producer = KafkaRecipeProducer(topic="recipe_topic")
+        consumer = KafkaRecipeConsumer(topic="recipe_topic")
+
+        # Example: Sending and receiving a generated recipe
+        generated_recipe = {"title": "New Recipe", "ingredients": ["ingredient1", "ingredient2"], "directions": "Mix and serve"}
+        producer.send_message(generated_recipe)
+        consumer.consume_messages()
     else:
         logger.error(f"Invalid mode: {args.mode}")
         sys.exit(1)
