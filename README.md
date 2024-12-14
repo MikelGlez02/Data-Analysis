@@ -121,34 +121,17 @@ ProyectoTD/
    cd proyecto_td
    ```
 
-2. Crear y guardar los archivos necesarios:
-   - Guardar `logstash.conf` en la carpeta del proyecto con:
-     ```plaintext
-     input {
-       tcp {
-         port => 5044
-       }
-     }
-     filter {
-     }
-     output {
-       elasticsearch {
-         hosts => ["http://elasticsearch:9200"]
-       }
-     }
-     ```
-
-3. Levantar el entorno completo:
+2. Levanta el entorno completo:
    ```bash
    docker-compose up --build
    ```
 
-4. Verificar que los servicios estén funcionando:
+3. Para comprobar que los servicios funcionan bien:
    ```bash
    docker ps
    ```
 
-5. Ejecutar funcionalidades del proyecto:
+4. Para ejecutar los diferentes pasos del proceso según los argumentos que pongamos
    - Preprocesamiento de datos:
      ```bash
      docker exec -it recipe_app python main.py preprocess --input_data data/raw/recipes.json --output_data data/processed/recipes_cleaned.json --preprocess_mode basic
@@ -180,14 +163,6 @@ ProyectoTD/
 - **Big Data:** Kafka, MongoDB.
 - **Monitoreo y Visualización:** ELK Stack (Elasticsearch, Logstash, Kibana).
 - **Despliegue:** Docker, Kubernetes.
-- **Validación de Datos:** Pydantic.
-
-
-
-
-
-
-
 - **Validación de Datos:** Pydantic.
 - **Visualización:** Matplotlib, Seaborn.
 
