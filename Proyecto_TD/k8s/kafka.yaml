@@ -10,6 +10,7 @@ spec:
     - protocol: TCP
       port: 9092
       targetPort: 9092
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
