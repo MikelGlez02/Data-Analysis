@@ -28,7 +28,7 @@ def main():
     args = parse_arguments()
 
     # Setup logging
-    setup_logger(args.log_level)
+    setup_logger()
     logger = logging.getLogger(__name__)
 
     # Initialize MongoDB handler
@@ -105,7 +105,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 
