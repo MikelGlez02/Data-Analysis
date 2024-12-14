@@ -1,9 +1,10 @@
 # kafka/consumer.py
 from kafka import KafkaConsumer
+import os
 import json
 
 class KafkaRecipeConsumer:
-    def __init__(self, topic, bootstrap_servers="localhost:9092"):
+    def __init__(self, topic, bootstrap_servers=os.getenv("KAFKA_BROKER", "localhost:9092")):
         self.consumer = KafkaConsumer(
             topic,
             bootstrap_servers=bootstrap_servers,
