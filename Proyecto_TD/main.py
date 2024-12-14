@@ -13,16 +13,27 @@ from preprocessing.embeddings import get_embeddings
 from database.mongodb_handler import MongoDBHandler
 from kafka.producer import KafkaRecipeProducer
 from kafka.consumer import KafkaRecipeConsumer
+from dotenv import load_dotenv
+import os
 import pandas as pd
 
 def main():
-    check_python_version()    # Verificamos la versión de Python (3.7)
-    args = parse_arguments()    # Analizamos los argumentos de los posibles comandos mencionados del README.md
-    setup_logger(args.log_level)    # Accedemos al programa
-    logger = logging.getLogger(__name__)    
+    # Load environment variables
+    load_dotenv()
+
+    # Verify Python version
+    check_python_version()
+
+    # Parse arguments
+    args = parse_arguments()
+
+    # Setup logging
+    setup_logger(args.log_level)
+    logger = logging.getLogger(__name__)
 
     # Initialize MongoDB handler
-    db_handler = MongoDBHandler(database_name="recipes_project", collection_name="recipes")
+    mongodb_uri = os.getenv("MONGODB_URI")
+    db_handler = MongoDBHandler(database_name="recipes_project", collection_name="recipes", uri=mongodb_uri)
 
     # Entry points for different modes
     if args.mode == "preprocess":
@@ -54,24 +65,30 @@ def main():
             )
         elif args.model_type == "transformers":
             fine_tune_transformer(epochs=args.epochs, batch_size=args.batch_size, learning_rate=args.learning_rate)
+
     elif args.mode == "evaluate":
         logger.info("Starting evaluation process...")
         if args.model_type == "pytorch":
             evaluate_regression_model(metric=args.evaluation_metric)
         elif args.model_type == "transformers":
             evaluate_transformer_model(metric=args.evaluation_metric)
+
     elif args.mode == "analyze":
         logger.info("Starting data analysis...")
         data = pd.DataFrame(db_handler.find_all())
         analyze_relationships(data)
+
     elif args.mode == "generate_new_recipes":
         logger.info("Generating new recipes in real-time using Kafka...")
-        producer = KafkaRecipeProducer(topic="recipe_topic")
-        consumer = KafkaRecipeConsumer(topic="recipe_topic")
+        kafka_broker = os.getenv("KAFKA_BROKER")
+        producer = KafkaRecipeProducer(topic="recipe_topic", bootstrap_servers=kafka_broker)
+        consumer = KafkaRecipeConsumer(topic="recipe_topic", bootstrap_servers=kafka_broker)
+
         # Example: Sending and receiving a generated recipe
         generated_recipe = {"title": "New Recipe", "ingredients": ["ingredient1", "ingredient2"], "directions": "Mix and serve"}
         producer.send_message(generated_recipe)
         consumer.consume_messages()
+
     elif args.mode == "test":
         logger.info("Running tests for the project...")
         from tests.test_preprocessing import test_clean_text
@@ -81,12 +98,14 @@ def main():
         test_clean_text()
         test_mongodb_integration()
         test_model_training_and_evaluation()
+
     else:
         logger.error(f"Invalid mode: {args.mode}")
         sys.exit(1)
 
 if __name__ == "__main__":
     main()
+
 
 
 
