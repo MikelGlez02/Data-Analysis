@@ -92,25 +92,45 @@ ProyectoTD/
 │   ├── service.yaml          # Exposición de la aplicación
 │
 ├── src/                      # Código fuente principal
+│   ├── __init__.py           # Inicializador del paquete principal
 │   ├── main.py               # Punto de entrada principal
 │   ├── preprocessing/        # Preprocesamiento de datos
-│   │   ├── text_cleaner.py   # Limpieza y normalización de texto
-│   │   ├── embeddings.py     # Generación de embeddings
+│   │   ├── __init__.py        # Inicializador del subpaquete
+│   │   ├── data_analysis.py   # Análisis avanzado de datos
+│   │   ├── embeddings.py      # Generación de embeddings
+│   │   ├── text_cleaner.py    # Limpieza y normalización de texto
 │   │
 │   ├── models/               # Modelado y evaluación
-│   │   ├── regression.py     # Modelos de regresión
-│   │   ├── transformers.py   # Fine-tuning con Transformers
+│   │   ├── __init__.py        # Inicializador del subpaquete
+│   │   ├── regression.py      # Modelos de regresión
+│   │   ├── transformers.py    # Fine-tuning con Transformers
 │   │
 │   ├── database/             # Integración con MongoDB
+│   │   ├── __init__.py        # Inicializador del subpaquete
 │   │   ├── mongodb_handler.py # Gestión de operaciones en MongoDB
+│   │
+│   ├── utils/                # Funcionalidades auxiliares
+│       ├── __init__.py        # Inicializador del subpaquete
+│       ├── arg_parser.py      # Parsing de argumentos de CLI
+│       ├── logger.py          # Configuración de logs
+│       ├── version_checker.py # Verificación de versiones de Python
 │
 ├── tests/                    # Tests unitarios y de integración
+│   ├── test_database.py       # Tests para base de datos
+│   ├── test_models.py         # Tests para modelos
+│   ├── test_preprocessing.py  # Tests para preprocesamiento
+│
+├── scripts/                  # Scripts de automatización
+│   ├── entrypoint.sh          # Script para inicializar el entorno en contenedores
+│
 ├── Dockerfile                # Contenedor Docker para la aplicación principal
-├── docker-compose.yml        # Configuración para Kafka, MongoDB, ELK Stack
+├── docker-compose.yml        # Configuración para Kafka, MongoDB y ELK Stack
+├── logstash.conf             # Configuración para Logstash (parte del ELK Stack)
 ├── requirements.txt          # Dependencias del proyecto
-├── setup.py                  # Configuración para convertirlo en paquete Python
+├── setup.py                  # Configuración para empaquetar como módulo de Python
 ├── .env                      # Variables de entorno
-└── README.md                 # Documentación del proyecto
+├── .gitignore                # Archivos y carpetas ignorados por Git
+└── README.md                 # Documentación principal del proyecto
 ```
 
 ## Instalación
