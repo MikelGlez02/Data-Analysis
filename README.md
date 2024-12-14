@@ -71,116 +71,21 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
           +------------------------------------------------+    
                                 |
           +------------------------------------------------+
-          |           Validación                           |
+          |                 Validación                     |
           +------------------------------------------------+
-
 ```
 
 ## Estructura del Proyecto
 
 ```plaintext
 ProyectoTD/
-│
-├── data/                     # Gestión de datos
-│   ├── raw/                  # Datos originales (JSON proporcionado)
-│   ├── processed/            # Datos procesados para modelos
-│
-├── kafka/                    # Configuración y scripts para Kafka
-│   ├── producer.py           # Productor Kafka
-│   ├── consumer.py           # Consumidor Kafka
-│
-├── k8s/                      # Configuración de Kubernetes
-│   ├── deployment.yaml       # Despliegue de la aplicación
-│   ├── kafka.yaml            # Despliegue de Kafka
-│   ├── mongodb.yaml          # Despliegue de MongoDB
-│   ├── service.yaml          # Exposición de la aplicación
-│
-├── src/                      # Código fuente principal
-│   ├── __init__.py           # Inicializador del paquete principal
-│   ├── main.py               # Punto de entrada principal
-│   ├── preprocessing/        # Preprocesamiento de datos
-│   │   ├── __init__.py        # Inicializador del subpaquete
-│   │   ├── data_analysis.py   # Análisis avanzado de datos
-│   │   ├── embeddings.py      # Generación de embeddings
-│   │   ├── text_cleaner.py    # Limpieza y normalización de texto
-│   │
-│   ├── models/               # Modelado y evaluación
-│   │   ├── __init__.py        # Inicializador del subpaquete
-│   │   ├── regression.py      # Modelos de regresión
-│   │   ├── transformers.py    # Fine-tuning con Transformers
-│   │
-│   ├── database/             # Integración con MongoDB
-│   │   ├── __init__.py        # Inicializador del subpaquete
-│   │   ├── mongodb_handler.py # Gestión de operaciones en MongoDB
-│   │
-│   ├── utils/                # Funcionalidades auxiliares
-│       ├── __init__.py        # Inicializador del subpaquete
-│       ├── arg_parser.py      # Parsing de argumentos de CLI
-│       ├── logger.py          # Configuración de logs
-│       ├── version_checker.py # Verificación de versiones de Python
-│
-├── tests/                    # Tests unitarios y de integración
-│   ├── test_database.py       # Tests para base de datos
-│   ├── test_models.py         # Tests para modelos
-│   ├── test_preprocessing.py  # Tests para preprocesamiento
-│
-├── scripts/                  # Scripts de automatización
-│   ├── entrypoint.sh          # Script para inicializar el entorno en contenedores
-│
-├── Dockerfile                # Contenedor Docker para la aplicación principal
-├── docker-compose.yml        # Configuración para Kafka, MongoDB y ELK Stack
-├── logstash.conf             # Configuración para Logstash (parte del ELK Stack)
-├── requirements.txt          # Dependencias del proyecto
-├── setup.py                  # Configuración para empaquetar como módulo de Python
-├── .env                      # Variables de entorno
+|
+├── Proyecto.ipynb            # Archivo .ipynb 
 ├── .gitignore                # Archivos y carpetas ignorados por Git
 └── README.md                 # Documentación principal del proyecto
 ```
 
-## Instalación
-
-1. Clonar este repositorio:
-   ```bash
-   git clone <repositorio>
-   cd proyecto_td
-   ```
-
-2. Levanta el entorno completo:
-   ```bash
-   docker-compose up --build
-   ```
-
-3. Para comprobar que los servicios funcionan bien:
-   ```bash
-   docker ps
-   ```
-
-4. Para ejecutar los diferentes pasos del proceso según los argumentos que pongamos
-   - Preprocesamiento de datos:
-     ```bash
-     docker exec -it recipe_app python main.py preprocess --input_data data/raw/recipes.json --output_data data/processed/recipes_cleaned.json --preprocess_mode basic
-     ```
-   - Entrenamiento del modelo:
-     ```bash
-     docker exec -it recipe_app python main.py train --model_type pytorch --vectorizer tfidf --epochs 20 --batch_size 32 --learning_rate 0.001
-     ```
-   - Evaluación del modelo:
-     ```bash
-     docker exec -it recipe_app python main.py evaluate --model_type pytorch --evaluation_metric mae
-     ```
-   - Generar recetas en tiempo real:
-     ```bash
-     docker exec -it recipe_app python main.py generate_new_recipes
-     ```
-   - Ejecutar pruebas unitarias:
-     ```bash
-     docker exec -it recipe_app python main.py test
-     ```
-
-6. Acceder a Kibana para monitoreo:
-   - Visita: `http://localhost:5601` y configura un índice con `logstash-*`.
-
-## Herramientas y Librerías
+## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
 
 - **Procesamiento de texto:** NLTK, SpaCy, Transformers.
 - **Aprendizaje Automático:** PyTorch, Scikit-learn.
@@ -223,9 +128,4 @@ ProyectoTD/
 
 10. **jupytext**: Conversión entre notebooks y scripts.
     - [Jupytext Documentation](https://jupytext.readthedocs.io/en/latest/)
-
-Esta bibliografía proporciona referencias clave sobre las herramientas utilizadas y sus documentaciones oficiales, ayudando a entender y extender las funcionalidades implementadas en este proyecto.
-
-## Licencia
-Este proyecto se distribuye bajo la licencia MIT. Consulte el archivo LICENSE para más detalles.
 
