@@ -16,15 +16,10 @@ from kafka.consumer import KafkaRecipeConsumer
 import pandas as pd
 
 def main():
-    # Verify Python version
-    check_python_version()
-
-    # Parse arguments
-    args = parse_arguments()
-
-    # Setup logging
-    setup_logger(args.log_level)
-    logger = logging.getLogger(__name__)
+    check_python_version()    # Verificamos la versión de Python (3.7)
+    args = parse_arguments()    # Analizamos los argumentos de los posibles comandos mencionados del README.md
+    setup_logger(args.log_level)    # Accedemos al programa
+    logger = logging.getLogger(__name__)    
 
     # Initialize MongoDB handler
     db_handler = MongoDBHandler(database_name="recipes_project", collection_name="recipes")
