@@ -11,7 +11,6 @@ Este proyecto forma parte del Máster en Ingeniería de Telecomunicación y tien
 - **Procesado de datos textuales.**
 - **Vectorización de documentos** con TF-IDF, Word2Vec y embeddings contextuales basados en Transformers.
 - **Regresión** utilizando Redes Neuronales y técnicas clásicas de aprendizaje automático.
-- **Integración de herramientas modernas:** Docker, Kubernetes, Kafka, MongoDB y ELK Stack para visualización y monitoreo de logs.
 
 ## Conjunto de Datos
 El dataset proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
@@ -48,28 +47,33 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
    - Visualización y análisis con herramientas de grafos.
    - Comparación de prestaciones entre distintos embeddings contextuales.
 
-3. **Integración de Herramientas Modernas:**
-   - **Docker y Kubernetes:** Contenerización y despliegue escalable de los modelos.
-   - **Kafka:** Procesamiento de datos en tiempo real.
-   - **MongoDB:** Almacenamiento y gestión eficiente de datos no estructurados.
-   - **ELK Stack:** Centralización de logs para monitoreo y visualización avanzada.
-
-4. **Desarrollo con Python Avanzado:**
+3. **Desarrollo con Python Avanzado:**
    - Uso de Pydantic para validación de datos.
    - Implementación de arquitecturas avanzadas como Redes Neuronales Convolucionales (CNN) y algoritmos de reducción de dimensionalidad como PCA.
 
 ## Esquema del Proyecto
 
 ```
-                            +-----------------------+
-                            |   Kubernetes Cluster  |
-                            +-----------------------+
-                                      |
-      +------------------+    +---------------+    +----------------+
-      | Application Pod  |<-->|  Kafka Broker |<-->| MongoDB Service|
-      +------------------+    +---------------+    +----------------+
-              |                            |
-        REST API                     Message Queue
+          +------------------------------------------------+
+          |        Análisis Exploratorio de Datos          |
+          +------------------------------------------------+
+                                |
+          +------------------------------------------------+
+          |        Preprocesamiento (NLKT, SpaCy)          |
+          +------------------------------------------------+    
+                                |
+          +------------------------------------------------+
+          |        Vectorización de Textos (TF-IDF)        |
+          +------------------------------------------------+    
+                                |
+          +------------------------------------------------+
+          |        Modelado (SVM,CART,NN,CNN,MSE,R2)       |
+          +------------------------------------------------+    
+                                |
+          +------------------------------------------------+
+          |           Validación                           |
+          +------------------------------------------------+
+
 ```
 
 ## Estructura del Proyecto
