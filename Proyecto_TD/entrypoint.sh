@@ -19,6 +19,9 @@ case "$COMMAND" in
   generate_new_recipes)
     python main.py generate_new_recipes "$@"
     ;;
+  test)
+    pytest tests/ --disable-warnings
+    ;;
   *)
     echo "Invalid command: $COMMAND"
     exit 1
