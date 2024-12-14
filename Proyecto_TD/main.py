@@ -73,11 +73,19 @@ def main():
         logger.info("Generating new recipes in real-time using Kafka...")
         producer = KafkaRecipeProducer(topic="recipe_topic")
         consumer = KafkaRecipeConsumer(topic="recipe_topic")
-
         # Example: Sending and receiving a generated recipe
         generated_recipe = {"title": "New Recipe", "ingredients": ["ingredient1", "ingredient2"], "directions": "Mix and serve"}
         producer.send_message(generated_recipe)
         consumer.consume_messages()
+    elif args.mode == "test":
+        logger.info("Running tests for the project...")
+        from tests.test_preprocessing import test_clean_text
+        from tests.test_database import test_mongodb_integration
+        from tests.test_models import test_model_training_and_evaluation
+
+        test_clean_text()
+        test_mongodb_integration()
+        test_model_training_and_evaluation()
     else:
         logger.error(f"Invalid mode: {args.mode}")
         sys.exit(1)
