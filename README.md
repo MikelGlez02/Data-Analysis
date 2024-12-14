@@ -11,7 +11,7 @@ Este proyecto forma parte del Máster en Ingeniería de Telecomunicación y tien
 - **Procesado de datos textuales.**
 - **Vectorización de documentos** con TF-IDF, Word2Vec y embeddings contextuales basados en Transformers.
 - **Regresión** utilizando Redes Neuronales y técnicas clásicas de aprendizaje automático.
-- **Extensiones opcionales:** Generación de texto, análisis con grafos, visualización avanzada y uso de herramientas modernas como Docker, Kubernetes, y sistemas de Big Data.
+- **Integración de herramientas modernas:** Docker, Kubernetes, Kafka, MongoDB y ELK Stack para visualización y monitoreo de logs.
 
 ## Conjunto de Datos
 El dataset proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
@@ -42,7 +42,7 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 ### Extensiones
 1. **Procesos avanzados de NLP:**
    - Uso de Summarizers para resumir instrucciones (`directions`).
-   - Técnicas de generación de recetas con modelos de lenguaje como LLaMA o GPT-3.
+   - Técnicas de generación de recetas con modelos de lenguaje como GPT.
 
 2. **Análisis Avanzado:**
    - Visualización y análisis con herramientas de grafos.
@@ -50,19 +50,13 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 
 3. **Integración de Herramientas Modernas:**
    - **Docker y Kubernetes:** Contenerización y despliegue escalable de los modelos.
-   - **Kafka y PySpark:** Procesamiento de datos en tiempo real.
+   - **Kafka:** Procesamiento de datos en tiempo real.
    - **MongoDB:** Almacenamiento y gestión eficiente de datos no estructurados.
-   - **Grafana y Power BI:**
-     - Grafana para monitoreo en tiempo real de métricas del sistema y modelos.
-     - Power BI para generación de dashboards interactivos y análisis visual avanzado.
+   - **ELK Stack:** Centralización de logs para monitoreo y visualización avanzada.
 
 4. **Desarrollo con Python Avanzado:**
    - Uso de Pydantic para validación de datos.
-   - Implementación de arquitecturas de modelos avanzados como:
-     - Redes Neuronales Autoencoder (Autoencoding NN).
-     - Redes Neuronales Convolucionales (Convolutional NN).
-     - Algoritmos CART, SVM, PCA.
-     - Filtros de Kalman y Particle.
+   - Implementación de arquitecturas avanzadas como Redes Neuronales Convolucionales (CNN) y algoritmos de reducción de dimensionalidad como PCA.
 
 ## Esquema del Proyecto
 
@@ -83,105 +77,117 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 ```plaintext
 ProyectoTD/
 │
-├── data/                     # Gestión de datos (puede ser opcional si todo se almacena en MongoDB)
+├── data/                     # Gestión de datos
 │   ├── raw/                  # Datos originales (JSON proporcionado)
 │   ├── processed/            # Datos procesados para modelos
 │
 ├── kafka/                    # Configuración y scripts para Kafka
 │   ├── producer.py           # Productor Kafka
 │   ├── consumer.py           # Consumidor Kafka
-│   ├── topics/               # Configuración de tópicos
 │
 ├── k8s/                      # Configuración de Kubernetes
 │   ├── deployment.yaml       # Despliegue de la aplicación
 │   ├── kafka.yaml            # Despliegue de Kafka
 │   ├── mongodb.yaml          # Despliegue de MongoDB
-│   ├── service.yaml          # Exposición de la aplicación y MongoDB
+│   ├── service.yaml          # Exposición de la aplicación
 │
 ├── src/                      # Código fuente principal
-│   ├── __init__.py
 │   ├── main.py               # Punto de entrada principal
 │   ├── preprocessing/        # Preprocesamiento de datos
-│   │   ├── __init__.py
 │   │   ├── text_cleaner.py   # Limpieza y normalización de texto
 │   │   ├── embeddings.py     # Generación de embeddings
 │   │
 │   ├── models/               # Modelado y evaluación
-│   │   ├── __init__.py
-│   │   ├── regression.py     # Modelos de regresión (SVM, PyTorch)
+│   │   ├── regression.py     # Modelos de regresión
 │   │   ├── transformers.py   # Fine-tuning con Transformers
 │   │
 │   ├── database/             # Integración con MongoDB
-│   │   ├── __init__.py
 │   │   ├── mongodb_handler.py # Gestión de operaciones en MongoDB
-│   │
-│   ├── utils/                # Utilidades
-│   │   ├── __init__.py
-│   │   ├── arg_parser.py     # Parsing de argumentos
-│   │   ├── logger.py         # Configuración de logs
-│   │   ├── version_checker.py # Comprobación de versiones de Python
 │
 ├── tests/                    # Tests unitarios y de integración
-│   ├── test_preprocessing.py # Tests para el preprocesamiento
-│   ├── test_models.py        # Tests para los modelos
-│   ├── test_database.py      # Tests para las interacciones con MongoDB
-│
 ├── Dockerfile                # Contenedor Docker para la aplicación principal
-├── docker-compose.yml        # Configuración para Kafka, MongoDB, y Zookeeper
+├── docker-compose.yml        # Configuración para Kafka, MongoDB, ELK Stack
 ├── requirements.txt          # Dependencias del proyecto
-├── README.md                 # Documentación del proyecto
 ├── setup.py                  # Configuración para convertirlo en paquete Python
-├── .env                      # Variables de entorno (con conexión a MongoDB)
-└── .gitignore                # Archivos a excluir en Git
+├── .env                      # Variables de entorno
+└── README.md                 # Documentación del proyecto
 ```
 
-
 ## Instalación
+
 1. Clonar este repositorio:
    ```bash
    git clone <repositorio>
+   cd proyecto_td
    ```
-2. Configurar un entorno virtual y las dependencias necesarias:
+
+2. Crear y guardar los archivos necesarios:
+   - Guardar `logstash.conf` en la carpeta del proyecto con:
+     ```plaintext
+     input {
+       tcp {
+         port => 5044
+       }
+     }
+     filter {
+     }
+     output {
+       elasticsearch {
+         hosts => ["http://elasticsearch:9200"]
+       }
+     }
+     ```
+
+3. Levantar el entorno completo:
    ```bash
-   python -m venv env
-   source env/bin/activate
-   pip install -r requirements.txt
+   docker-compose up --build
    ```
-3. Configuración de Docker y Kubernetes:
-   - Asegúrese de tener Docker instalado y siga las instrucciones en el archivo `docker-compose.yml`.
 
-4. Configuración de Kafka y PySpark:
-   - Configure Kafka y PySpark utilizando los scripts en la carpeta `scripts/`.
+4. Verificar que los servicios estén funcionando:
+   ```bash
+   docker ps
+   ```
 
-5. Configuración de Grafana y Power BI:
-   - **Grafana:** Siga la configuración en `grafana-config/` para importar dashboards predefinidos.
-   - **Power BI:** Utilice los archivos `.pbix` en `powerbi-templates/` para configurar visualizaciones interactivas.
+5. Ejecutar funcionalidades del proyecto:
+   - Preprocesamiento de datos:
+     ```bash
+     docker exec -it recipe_app python main.py preprocess --input_data data/raw/recipes.json --output_data data/processed/recipes_cleaned.json --preprocess_mode basic
+     ```
+   - Entrenamiento del modelo:
+     ```bash
+     docker exec -it recipe_app python main.py train --model_type pytorch --vectorizer tfidf --epochs 20 --batch_size 32 --learning_rate 0.001
+     ```
+   - Evaluación del modelo:
+     ```bash
+     docker exec -it recipe_app python main.py evaluate --model_type pytorch --evaluation_metric mae
+     ```
+   - Generar recetas en tiempo real:
+     ```bash
+     docker exec -it recipe_app python main.py generate_new_recipes
+     ```
+   - Ejecutar pruebas unitarias:
+     ```bash
+     docker exec -it recipe_app python main.py test
+     ```
 
-6. Ejecución del proyecto:
-   - Se va a basar en diferentes ejecuciones según su implementación:
-        **Preprocesamiento de datos**
-        ```bash
-        python main.py preprocess --input_data data/raw/recipes.json --output_data data/processed/recipes_cleaned.json --preprocess_mode basic
-        ```
-        **Entrenamiento del modelo utilizado**
-        ```bash
-        python main.py train --model_type pytorch --vectorizer tfidf --epochs 20 --batch_size 32 --learning_rate 0.001
-        ```
-        **Evaluación del modelo**
-        ```bash
-        python main.py evaluate --model_type pytorch --evaluation_metric mae
-        ```
-        **Generar de nuevas recetas en tiempo real**
-        ```bash
-        python main.py generate_new_recipes
-        ```
+6. Acceder a Kibana para monitoreo:
+   - Visita: `http://localhost:5601` y configura un índice con `logstash-*`.
 
 ## Herramientas y Librerías
-- **Procesamiento de texto:** NLTK, SpaCy, Gensim, Transformers.
+
+- **Procesamiento de texto:** NLTK, SpaCy, Transformers.
 - **Aprendizaje Automático:** PyTorch, Scikit-learn.
-- **Big Data:** PySpark, Kafka, MongoDB.
-- **Monitoreo y Visualización:** Grafana, Power BI.
+- **Big Data:** Kafka, MongoDB.
+- **Monitoreo y Visualización:** ELK Stack (Elasticsearch, Logstash, Kibana).
 - **Despliegue:** Docker, Kubernetes.
+- **Validación de Datos:** Pydantic.
+
+
+
+
+
+
+
 - **Validación de Datos:** Pydantic.
 - **Visualización:** Matplotlib, Seaborn.
 
