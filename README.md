@@ -64,6 +64,20 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
      - Algoritmos CART, SVM, PCA.
      - Filtros de Kalman y Particle.
 
+## Esquema del Proyecto
+
+```
+                            +-----------------------+
+                            |   Kubernetes Cluster  |
+                            +-----------------------+
+                                      |
+      +------------------+    +---------------+    +----------------+
+      | Application Pod  |<-->|  Kafka Broker |<-->| MongoDB Service|
+      +------------------+    +---------------+    +----------------+
+              |                            |
+        REST API                     Message Queue
+```
+
 ## Estructura del Proyecto
 
 ```plaintext
