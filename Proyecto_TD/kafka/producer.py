@@ -1,9 +1,10 @@
 # kafka/producer.py
 from kafka import KafkaProducer
+import os
 import json
 
 class KafkaRecipeProducer:
-    def __init__(self, topic, bootstrap_servers="localhost:9092"):
+    def __init__(self, topic, bootstrap_servers=os.getenv("KAFKA_BROKER", "localhost:9092")):
         self.producer = KafkaProducer(
             bootstrap_servers=bootstrap_servers,
             value_serializer=lambda v: json.dumps(v).encode("utf-8")
