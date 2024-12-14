@@ -3,8 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: recipe-app-deployment
-  labels:
-    app: recipe-app
 spec:
   replicas: 3
   selector:
@@ -25,3 +23,5 @@ spec:
           value: "kafka-service:9092"
         - name: MONGODB_URI
           value: "mongodb://mongodb-service:27017"
+        - name: APP_PORT
+          value: "5000"
