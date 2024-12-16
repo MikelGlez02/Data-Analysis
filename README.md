@@ -28,8 +28,36 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 - **Modelos de Aprendizaje Automático**:
   - K-Nearest Neighbors (KNN)
   - Redes Neuronales (NN)
+## Estructura de archivos del proyecto
+
+Como se puede observar hay varios notebooks.
+El notebook V4 es un intento fallido de implementear una cabeza de regresión en un modelo pre entrenado BERT para clasificación.
+Los notebooks V3 son los notebooks que se han utilizado para los resultados finales.
+Cada uno de ellos contiene los resultados con distintas features:
+  - All data: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
+  - OnlyTextdata: Utiliza solamente los datos de texto como la categoría anterior.
+  - Only some Text Data: Utiliza solamente las columnas de instrucciones y descripciones.
+  - Directions: Solo utiliza las instrucciones.
+  - Descriptions: Solo utiliza las descripciones de las recetas.
+
+
+## Workflow
+
+En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto.
+Esto ha reducido el número de recetas a entorno a 10 000.
+Es conveniente debido a que el tiempo de procesamiento de todo el dataset es muy elevado y esto permite la ejecución en local de este problema con gpu.
+
+En segundo lugar se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF.
+Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
+
+Despues se procede a la vectorización de los datos con los 3 modelos
+
+Por ultimo se entrenan los modelos y se evalúa su rendimiento
+
+## Métricas utilizadas
 
 ## Resultados
+
 
 ### Visualización de Categorías de Recetas
 - **Top 20 Categorías Más Valoradas**:
@@ -38,16 +66,10 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 - **Puntuaciones de Todas las Categorías**:
   ![Todas las Categorías](Categorias.png)
 
+
+
 ### Rendimiento de los Modelos
-- **TF-IDF + KNN**:
-  - Error Absoluto Medio (MAE): 0.828
-  - Error Cuadrático Medio (MSE): 1.562
-- **Word2Vec + Red Neuronal**:
-  - MAE: 0.757
-  - MSE: 1.529
-- **BERT + Red Neuronal**:
-  - MAE: 0.735
-  - MSE: 1.415
+
 
 
 ## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
