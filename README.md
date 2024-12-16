@@ -63,8 +63,6 @@ Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
 ## Vectorizado
 Despues se procede a la vectorización de los datos con los 3 modelos
 
-## Vectorizadores utilizados
-
 - TF-IDF
 - W2V
 - Bert: Se ha utilizado una max_leght de 64 para evitar colapsar la memoria de los ordenadores
