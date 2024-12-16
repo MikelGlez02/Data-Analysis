@@ -3,97 +3,90 @@
 ## Autores
 Miguel González Martínez (100451423) y Carlos de Quinto Cáceres (100451547)
 
-## Introducción
-Este proyecto forma parte del Máster en Ingeniería de Telecomunicación y tiene como objetivo aplicar técnicas avanzadas de procesamiento de datos y aprendizaje automático para resolver tareas relacionadas con documentos textuales. En este caso, se utilizará un conjunto de datos basado en recetas de cocina.
+# Análisis de Recetas y Predicción de Calificaciones con NLP y ML
 
-### Resumen del Proyecto
+Este repositorio contiene un proyecto que utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. El conjunto de datos incluye recetas con atributos como ingredientes, categorías y calificaciones.
 
-- **Procesado de datos textuales.**
-- **Vectorización de documentos** con TF-IDF, Word2Vec y embeddings contextuales basados en Transformers.
-- **Regresión** utilizando Redes Neuronales y técnicas clásicas de aprendizaje automático.
+## Descripción del Proyecto
+
+Los objetivos principales del proyecto son:
+1. Preprocesar y extraer características significativas de los textos y metadatos de las recetas.
+2. Experimentar con múltiples representaciones de texto (TF-IDF, Word2Vec y BERT) para la extracción de características.
+3. Construir y evaluar modelos predictivos para las calificaciones de las recetas.
+
 
 ## Conjunto de Datos
 El dataset proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
 
-## Metodología
+## Características
 
-### Proyecto Básico
-1. **Análisis Exploratorio de Datos:**
-   - Visualización y análisis de la relación entre la variable de salida (`rating`) y las variables de entrada, incluyendo `categories`.
+- **Preprocesamiento de Texto**: Uso de `spaCy` para tokenización, lematización y eliminación de palabras vacías.
+- **Ingeniería de Características**:
+  - Vectorización con TF-IDF
+  - Embeddings con Word2Vec
+  - Embeddings contextuales con BERT
+- **Modelos de Aprendizaje Automático**:
+  - K-Nearest Neighbors (KNN)
+  - Redes Neuronales (NN)
+## Estructura de archivos del proyecto
 
-2. **Preprocesamiento:**
-   - Normalización y limpieza de datos textuales con bibliotecas como NLTK, SpaCy o Gensim.
-   - Tokenización y tratamiento especial para Transformers.
+Como se puede observar hay varios notebooks.
+El notebook V4 es un intento fallido de implementear una cabeza de regresión en un modelo pre entrenado BERT para clasificación.
+Los notebooks V3 son los notebooks que se han utilizado para los resultados finales.
+Cada uno de ellos contiene los resultados con distintas features:
+  - All data: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
+  - OnlyTextdata: Utiliza solamente los datos de texto como la categoría anterior.
+  - Only some Text Data: Utiliza solamente las columnas de instrucciones y descripciones.
+  - Directions: Solo utiliza las instrucciones.
+  - Descriptions: Solo utiliza las descripciones de las recetas.
 
-3. **Vectorización de Textos:**
-   - Implementación de TF-IDF.
-   - Uso de Word2Vec para promediar embeddings.
-   - Generación de embeddings contextuales con modelos Transformers como BERT y RoBERTa.
 
-4. **Modelado:**
-   - **Redes Neuronales:** Implementadas con PyTorch para tareas de regresión.
-   - **Técnicas adicionales:** Modelos como SVM, Random Forest o K-NN con scikit-learn.
-   - **Fine-tuning:** Ajuste de modelos preentrenados utilizando Transformers de Hugging Face.
+## Workflow
 
-5. **Validación:**
-   - Uso de técnicas como k-fold cross-validation y métricas adecuadas para evaluar el rendimiento.
+En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto.
+Esto ha reducido el número de recetas a entorno a 10 000.
+Es conveniente debido a que el tiempo de procesamiento de todo el dataset es muy elevado y esto permite la ejecución en local de este problema con gpu.
 
-### Extensiones
-1. **Procesos avanzados de NLP:**
-   - Uso de Summarizers para resumir instrucciones (`directions`).
-   - Técnicas de generación de recetas con modelos de lenguaje como GPT.
+En segundo lugar se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF.
+Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
 
-2. **Análisis Avanzado:**
-   - Visualización y análisis con herramientas de grafos.
-   - Comparación de prestaciones entre distintos embeddings contextuales.
+Despues se procede a la vectorización de los datos con los 3 modelos
 
-3. **Desarrollo con Python Avanzado:**
-   - Uso de Pydantic para validación de datos.
-   - Implementación de arquitecturas avanzadas como Redes Neuronales Convolucionales (CNN) y algoritmos de reducción de dimensionalidad como PCA.
+Por ultimo se entrenan los modelos y se evalúa su rendimiento
 
-## Esquema del Proyecto
+## Métricas utilizadas
 
-```
-          +------------------------------------------------+
-          |        Análisis Exploratorio de Datos          |
-          +------------------------------------------------+
-                                |
-          +------------------------------------------------+
-          |        Preprocesamiento (NLKT, SpaCy)          |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |        Vectorización de Textos (TF-IDF)        |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |        Modelado (SVM,CART,NN,CNN,MSE,R2)       |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |                 Validación                     |
-          +------------------------------------------------+
-```
+La métrica mas utilizada durante el proyecto ha sido la MAE, ya que permite hacernos una idea del rendimiento del proyecto en unidades naturales.
 
-## Estructura del Proyecto
+Como base hemos utilizado la MAE que tendría un regresor que siempre predice el valor medio de todos los ratings.
 
-```plaintext
-ProyectoTD/
-|
-├── Proyecto.ipynb            # Archivo .ipynb 
-├── .gitignore                # Archivos y carpetas ignorados por Git
-└── README.md                 # Documentación principal del proyecto
-```
+Esto es 0.828418629242508.
 
-## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
+## Resultados
+
+
+### Visualización de Categorías de Recetas
+- **Top 20 Categorías Más Valoradas**:
+  ![Top Categorías](Top20Categorias.png)
+
+- **Puntuaciones de Todas las Categorías**:
+  ![Todas las Categorías](Categorias.png)
+
+Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. 
+
+
+(Distribución leptocurtica)
+
+### Rendimiento de los Modelos
+
+El rendimiento de los modelos se puede observar en cada notebook. La MAE del modelo pre entrenado resulta en una MAE de 2.82, donde el valor medio del conjunto de datos da -1, ya que el modelo esta prediciendo siempre uno: la cabeza de regresion no se ha implementado correctamente.
+
+## Herramientas y Librerías Usadas del Proyecto
 
 - **Procesamiento de texto:** NLTK, SpaCy, Transformers.
-- **Aprendizaje Automático:** PyTorch, Scikit-learn.
-- **Big Data:** Kafka, MongoDB.
-- **Monitoreo y Visualización:** ELK Stack (Elasticsearch, Logstash, Kibana).
-- **Despliegue:** Docker, Kubernetes.
+- **Aprendizaje Automático:** PyTorch, Scikit-learn. (Otra alternativa sería usar PySpark)
 - **Validación de Datos:** Pydantic.
-- **Visualización:** Matplotlib, Seaborn.
+- **Visualización:** Matplotlib.
 
 ## Bibliografía
 
@@ -105,27 +98,15 @@ ProyectoTD/
 2. **Jupyter Notebooks**: Para exploración interactiva.
    - [Jupyter Documentation](https://jupyter.org/documentation)
 
-3. **MongoDB**: Base de datos para almacenamiento semiestructurado.
-   - [MongoDB Documentation](https://www.mongodb.com/docs/)
-
-4. **Kafka**: Mensajería en tiempo real.
-   - [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
-
-5. **Kubernetes**: Orquestación de contenedores.
-   - [Kubernetes Documentation](https://kubernetes.io/docs/)
-
-6. **PyTorch**: Framework de deep learning.
+3. **PyTorch**: Framework de deep learning.
    - [PyTorch Documentation](https://pytorch.org/docs/)
 
-7. **Scikit-learn**: Algoritmos clásicos de machine learning.
+4. **Scikit-learn**: Algoritmos clásicos de machine learning.
    - [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
 
-8. **Docker**: Contenerización del proyecto.
-   - [Docker Documentation](https://docs.docker.com/)
-
-9. **Hugging Face Transformers**: Fine-tuning de modelos.
+5. **Hugging Face Transformers**: Fine-tuning de modelos.
    - [Hugging Face Documentation](https://huggingface.co/docs/transformers/)
 
-10. **Jupytext**: Conversión entre notebooks y scripts.
+6. **Jupytext**: Conversión entre notebooks y scripts.
     - [Jupytext Documentation](https://jupytext.readthedocs.io/en/latest/)
 
