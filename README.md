@@ -72,18 +72,19 @@ Esto es 0.828418629242508.
 - **Puntuaciones de Todas las Categorías**:
   ![Todas las Categorías](Categorias.png)
 
-Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. (Distribución leptocurtica)
+Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. 
+
+
+(Distribución leptocurtica)
 
 ### Rendimiento de los Modelos
 
-El rendimiento de los modelos se puede observar en cada notebook.
+El rendimiento de los modelos se puede observar en cada notebook. La MAE del modelo pre entrenado resulta en una MAE de 2.82, donde el valor medio del conjunto de datos da -1, ya que el modelo esta prediciendo siempre uno: la cabeza de regresion no se ha implementado correctamente.
 
-La mae del modelo pre entrenado de hugging face da una MAE de 2.82, el valor medio del conjunto de datos -1, ya que el modelo esta prediciendo siempre uno debido a que la cabeza de regresion no se ha implementado correctamente
-
-## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
+## Herramientas y Librerías Usadas del Proyecto
 
 - **Procesamiento de texto:** NLTK, SpaCy, Transformers.
-- **Aprendizaje Automático:** PyTorch, Scikit-learn.
+- **Aprendizaje Automático:** PyTorch, Scikit-learn. (Otra alternativa sería usar PySpark)
 - **Validación de Datos:** Pydantic.
 - **Visualización:** Matplotlib.
 
@@ -97,15 +98,15 @@ La mae del modelo pre entrenado de hugging face da una MAE de 2.82, el valor med
 2. **Jupyter Notebooks**: Para exploración interactiva.
    - [Jupyter Documentation](https://jupyter.org/documentation)
 
-6. **PyTorch**: Framework de deep learning.
+3. **PyTorch**: Framework de deep learning.
    - [PyTorch Documentation](https://pytorch.org/docs/)
 
-7. **Scikit-learn**: Algoritmos clásicos de machine learning.
+4. **Scikit-learn**: Algoritmos clásicos de machine learning.
    - [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
 
-9. **Hugging Face Transformers**: Fine-tuning de modelos.
+5. **Hugging Face Transformers**: Fine-tuning de modelos.
    - [Hugging Face Documentation](https://huggingface.co/docs/transformers/)
 
-10. **Jupytext**: Conversión entre notebooks y scripts.
+6. **Jupytext**: Conversión entre notebooks y scripts.
     - [Jupytext Documentation](https://jupytext.readthedocs.io/en/latest/)
 
