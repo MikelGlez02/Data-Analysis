@@ -112,7 +112,10 @@ Se pueden observar diversos patrones al cambiar de datos
 
 ## Conclusión
 
-Parece que los mejores resultados son producidos por el BERT cuando se usan los datos adecuados.
+
+Los mejores resultados parecen ser obtenidos por BERT cuando se utilizan los datos adecuados. Es probable que un mejor rendimiento se logre aumentando el max length de BERT, siempre que se disponga de un equipo más potente.
+
+Por otro lado, ampliar aún más la red neuronal compleja podría también mejorar su rendimiento. En contraste, la red KNN resulta poco expresiva al manejar grandes volúmenes de datos.
 
 ## Herramientas y Librerías Usadas del Proyecto
 
