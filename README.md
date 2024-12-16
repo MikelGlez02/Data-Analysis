@@ -41,19 +41,6 @@ Cada uno de ellos contiene los resultados con distintas features:
   - Descriptions: Solo utiliza las descripciones de las recetas.
 
 
-## Workflow
-
-En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto.
-Esto ha reducido el número de recetas a entorno a 10 000.
-Es conveniente debido a que el tiempo de procesamiento de todo el dataset es muy elevado y esto permite la ejecución en local de este problema con gpu.
-
-En segundo lugar se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF.
-Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
-
-Despues se procede a la vectorización de los datos con los 3 modelos
-
-Por ultimo se entrenan los modelos y se evalúa su rendimiento
-
 ## Métricas utilizadas
 
 La métrica mas utilizada durante el proyecto ha sido la MAE, ya que permite hacernos una idea del rendimiento del proyecto en unidades naturales.
@@ -61,6 +48,39 @@ La métrica mas utilizada durante el proyecto ha sido la MAE, ya que permite hac
 Como base hemos utilizado la MAE que tendría un regresor que siempre predice el valor medio de todos los ratings.
 
 Esto es 0.828418629242508.
+
+## Limpieza de datos
+
+En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto.
+Esto ha reducido el número de recetas a entorno a 10 000.
+Es conveniente debido a que el tiempo de procesamiento de todo el dataset es muy elevado y esto permite la ejecución en local de este problema con gpu.
+
+## Preprocesado
+
+Se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF.
+Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
+
+## Vectorizado
+Despues se procede a la vectorización de los datos con los 3 modelos
+
+## Vectorizadores utilizados
+
+- TF-IDF
+- W2V
+- Bert: Se ha utilizado una max_leght de 64 para evitar colapsar la memoria de los ordenadores
+
+
+
+## Modelos utilizados
+Se han utilizado varios modelos para medir el rendimiento de los vectorizadores:
+
+- KNN: de scikit learn
+
+- Red neuronal simple: La red SimpleNN es una red neuronal completamente conectada con una capa oculta de 128 neuronas y activación ReLU, seguida de una capa de salida con 1 neurona. Es adecuada para tareas simples de regresión o clasificación binaria. Su estructura permite procesar entradas de tamaño definido por input_size.
+
+- Red neuronal compleja: La red ComplexNN es una red neuronal profunda y configurable con múltiples capas ocultas (por defecto 256, 128 y 64 neuronas). Cada capa incluye activación ReLU, normalización BatchNorm, y Dropout para regularización. Es adecuada para tareas más complejas de regresión o clasificación, permitiendo personalizar tanto el tamaño de las capas ocultas como la tasa de dropout.
+
+- Red Bert pre entrenada de hugging face
 
 ## Resultados
 
@@ -76,7 +96,25 @@ Es interesante observar que la mayoría de categorías tiene una media similar, 
 
 ### Rendimiento de los Modelos
 
-El rendimiento de los modelos se puede observar en cada notebook. La MAE del modelo pre entrenado resulta en una MAE de 2.82, donde el valor medio del conjunto de datos da -1, ya que el modelo esta prediciendo siempre uno: la cabeza de regresion no se ha implementado correctamente.
+El rendimiento de los modelos se puede observar los excels. Hay un excel que recopila todos los datos(Resultado Datos), mientras que (Comparacion entre vectorizaciones) ayuda a comparar el rendimiento de las vectorizaciones dependiendo de los datos de entrada mencionados anteriormente.
+
+Aqui podemos ver los resultados para la red neuronal compleja:
+
+| Model  | ALL DATA    | ONLY TEXT DATA | SomeTextData | Directions  | Descriptions |
+|--------|-------------|----------------|-------------|-------------|--------------|
+| W2V    | 0.729761541 | 0.72748363     | 0.70285362  | 0.72418654  | 0.7309196    |
+| TF-IDF | 0.678939462 | 0.663268507    | 0.686691642 | 0.695839405 | 0.697468162  |
+| BERT   | 0.711494803 | 0.644052863    | 0.690597415 | 0.720204115 | 0.697323203  |
+
+
+Se pueden observar diversos patrones al cambiar de datos
+
+ La MAE del modelo bert pre entrenado con fine tunning resulta en una MAE de 2.82. Este resultado es la media -1, ya que el predictor siempre ha tenido como salida 1, y por tanto el MAE es la media -1.
+ Esto sucede porque el modelo esta prediciendo siempre uno, lo que nos indica que la cabeza de regresion no se ha implementado correctamente.
+
+## Conclusión
+
+Parece que los mejores resultados son producidos por el BERT cuando se usan los datos adecuados.
 
 ## Herramientas y Librerías Usadas del Proyecto
 
