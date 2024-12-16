@@ -56,6 +56,12 @@ Por ultimo se entrenan los modelos y se evalúa su rendimiento
 
 ## Métricas utilizadas
 
+La métrica mas utilizada durante el proyecto ha sido la MAE, ya que permite hacernos una idea del rendimiento del proyecto en unidades naturales.
+
+Como base hemos utilizado la MAE que tendría un regresor que siempre predice el valor medio de todos los ratings.
+
+Esto es 0.828418629242508.
+
 ## Resultados
 
 
@@ -66,11 +72,13 @@ Por ultimo se entrenan los modelos y se evalúa su rendimiento
 - **Puntuaciones de Todas las Categorías**:
   ![Todas las Categorías](Categorias.png)
 
-
+Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. (Distribución leptocurtica)
 
 ### Rendimiento de los Modelos
 
+El rendimiento de los modelos se puede observar en cada notebook.
 
+La mae del modelo pre entrenado de hugging face da una MAE de 2.82, el valor medio del conjunto de datos -1, ya que el modelo esta prediciendo siempre uno debido a que la cabeza de regresion no se ha implementado correctamente
 
 ## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
 
