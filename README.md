@@ -72,10 +72,7 @@ Esto es 0.828418629242508.
 - **Puntuaciones de Todas las Categorías**:
   ![Todas las Categorías](Categorias.png)
 
-Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. 
-
-
-(Distribución leptocurtica)
+Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. Podemos observar que exhibe un pico más alto y colas más pesadas en comparación con la distribución normal, lo que indica una distribución leptocurtica, lo que significa que los datos tienen una mayor concentración alrededor de la media y valores más extremos en las colas.
 
 ### Rendimiento de los Modelos
 
