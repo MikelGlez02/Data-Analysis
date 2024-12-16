@@ -126,6 +126,6 @@ ProyectoTD/
 9. **Hugging Face Transformers**: Fine-tuning de modelos.
    - [Hugging Face Documentation](https://huggingface.co/docs/transformers/)
 
-10. **jupytext**: Conversión entre notebooks y scripts.
+10. **Jupytext**: Conversión entre notebooks y scripts.
     - [Jupytext Documentation](https://jupytext.readthedocs.io/en/latest/)
 
