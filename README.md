@@ -3,97 +3,59 @@
 ## Autores
 Miguel González Martínez (100451423) y Carlos de Quinto Cáceres (100451547)
 
-## Introducción
-Este proyecto forma parte del Máster en Ingeniería de Telecomunicación y tiene como objetivo aplicar técnicas avanzadas de procesamiento de datos y aprendizaje automático para resolver tareas relacionadas con documentos textuales. En este caso, se utilizará un conjunto de datos basado en recetas de cocina.
+# Análisis de Recetas y Predicción de Calificaciones con NLP y ML
 
-### Resumen del Proyecto
+Este repositorio contiene un proyecto que utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. El conjunto de datos incluye recetas con atributos como ingredientes, categorías y calificaciones.
 
-- **Procesado de datos textuales.**
-- **Vectorización de documentos** con TF-IDF, Word2Vec y embeddings contextuales basados en Transformers.
-- **Regresión** utilizando Redes Neuronales y técnicas clásicas de aprendizaje automático.
+## Descripción del Proyecto
+
+Los objetivos principales del proyecto son:
+1. Preprocesar y extraer características significativas de los textos y metadatos de las recetas.
+2. Experimentar con múltiples representaciones de texto (TF-IDF, Word2Vec y BERT) para la extracción de características.
+3. Construir y evaluar modelos predictivos para las calificaciones de las recetas.
+
 
 ## Conjunto de Datos
 El dataset proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
 
-## Metodología
+## Características
 
-### Proyecto Básico
-1. **Análisis Exploratorio de Datos:**
-   - Visualización y análisis de la relación entre la variable de salida (`rating`) y las variables de entrada, incluyendo `categories`.
+- **Preprocesamiento de Texto**: Uso de `spaCy` para tokenización, lematización y eliminación de palabras vacías.
+- **Ingeniería de Características**:
+  - Vectorización con TF-IDF
+  - Embeddings con Word2Vec
+  - Embeddings contextuales con BERT
+- **Modelos de Aprendizaje Automático**:
+  - K-Nearest Neighbors (KNN)
+  - Redes Neuronales (NN)
 
-2. **Preprocesamiento:**
-   - Normalización y limpieza de datos textuales con bibliotecas como NLTK, SpaCy o Gensim.
-   - Tokenización y tratamiento especial para Transformers.
+## Resultados
 
-3. **Vectorización de Textos:**
-   - Implementación de TF-IDF.
-   - Uso de Word2Vec para promediar embeddings.
-   - Generación de embeddings contextuales con modelos Transformers como BERT y RoBERTa.
+### Visualización de Categorías de Recetas
+- **Top 20 Categorías Más Valoradas**:
+  ![Top Categorías](Top20Categorias.png)
 
-4. **Modelado:**
-   - **Redes Neuronales:** Implementadas con PyTorch para tareas de regresión.
-   - **Técnicas adicionales:** Modelos como SVM, Random Forest o K-NN con scikit-learn.
-   - **Fine-tuning:** Ajuste de modelos preentrenados utilizando Transformers de Hugging Face.
+- **Puntuaciones de Todas las Categorías**:
+  ![Todas las Categorías](Categorias.png)
 
-5. **Validación:**
-   - Uso de técnicas como k-fold cross-validation y métricas adecuadas para evaluar el rendimiento.
+### Rendimiento de los Modelos
+- **TF-IDF + KNN**:
+  - Error Absoluto Medio (MAE): 0.828
+  - Error Cuadrático Medio (MSE): 1.562
+- **Word2Vec + Red Neuronal**:
+  - MAE: 0.757
+  - MSE: 1.529
+- **BERT + Red Neuronal**:
+  - MAE: 0.735
+  - MSE: 1.415
 
-### Extensiones
-1. **Procesos avanzados de NLP:**
-   - Uso de Summarizers para resumir instrucciones (`directions`).
-   - Técnicas de generación de recetas con modelos de lenguaje como GPT.
-
-2. **Análisis Avanzado:**
-   - Visualización y análisis con herramientas de grafos.
-   - Comparación de prestaciones entre distintos embeddings contextuales.
-
-3. **Desarrollo con Python Avanzado:**
-   - Uso de Pydantic para validación de datos.
-   - Implementación de arquitecturas avanzadas como Redes Neuronales Convolucionales (CNN) y algoritmos de reducción de dimensionalidad como PCA.
-
-## Esquema del Proyecto
-
-```
-          +------------------------------------------------+
-          |        Análisis Exploratorio de Datos          |
-          +------------------------------------------------+
-                                |
-          +------------------------------------------------+
-          |        Preprocesamiento (NLKT, SpaCy)          |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |        Vectorización de Textos (TF-IDF)        |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |        Modelado (SVM,CART,NN,CNN,MSE,R2)       |
-          +------------------------------------------------+    
-                                |
-          +------------------------------------------------+
-          |                 Validación                     |
-          +------------------------------------------------+
-```
-
-## Estructura del Proyecto
-
-```plaintext
-ProyectoTD/
-|
-├── Proyecto.ipynb            # Archivo .ipynb 
-├── .gitignore                # Archivos y carpetas ignorados por Git
-└── README.md                 # Documentación principal del proyecto
-```
 
 ## Herramientas y Librerías para Posibles Mejoras Futuras del Proyecto
 
 - **Procesamiento de texto:** NLTK, SpaCy, Transformers.
 - **Aprendizaje Automático:** PyTorch, Scikit-learn.
-- **Big Data:** Kafka, MongoDB.
-- **Monitoreo y Visualización:** ELK Stack (Elasticsearch, Logstash, Kibana).
-- **Despliegue:** Docker, Kubernetes.
 - **Validación de Datos:** Pydantic.
-- **Visualización:** Matplotlib, Seaborn.
+- **Visualización:** Matplotlib.
 
 ## Bibliografía
 
@@ -105,23 +67,11 @@ ProyectoTD/
 2. **Jupyter Notebooks**: Para exploración interactiva.
    - [Jupyter Documentation](https://jupyter.org/documentation)
 
-3. **MongoDB**: Base de datos para almacenamiento semiestructurado.
-   - [MongoDB Documentation](https://www.mongodb.com/docs/)
-
-4. **Kafka**: Mensajería en tiempo real.
-   - [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
-
-5. **Kubernetes**: Orquestación de contenedores.
-   - [Kubernetes Documentation](https://kubernetes.io/docs/)
-
 6. **PyTorch**: Framework de deep learning.
    - [PyTorch Documentation](https://pytorch.org/docs/)
 
 7. **Scikit-learn**: Algoritmos clásicos de machine learning.
    - [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
-
-8. **Docker**: Contenerización del proyecto.
-   - [Docker Documentation](https://docs.docker.com/)
 
 9. **Hugging Face Transformers**: Fine-tuning de modelos.
    - [Hugging Face Documentation](https://huggingface.co/docs/transformers/)
