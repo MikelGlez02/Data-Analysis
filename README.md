@@ -1,22 +1,24 @@
-# Proyecto Final: Tratamiento de Datos 2024/25
+# Proyecto Final: Tratamiento de Datos 2024/25 (Convocatoria Extraordinaria)
 
-## Autores
-Miguel González Martínez (100451423) y Carlos de Quinto Cáceres (100451547)
+## Autor
+Miguel González Martínez (100451423)
 
 # Análisis de Recetas y Predicción de Calificaciones con NLP y ML
 
-Este repositorio contiene un proyecto que utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. El conjunto de datos incluye recetas con atributos como ingredientes, categorías y calificaciones.
+Este repositorio consiste en la extensión del proyecto realizado anteriormente en la convocatoria ordinaria con el objetivo de, no solo revisar, comparar y mejorar el proyecto base planteado anteriormente, sino incluyendo además el apartado de extensión (que no estaba incluido en la convocatoria ordinaria). Concretamente, se utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático de un conjunto de datos que servirá para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. 
 
 ## Descripción del Proyecto
 
-Los objetivos principales del proyecto son:
-1. Preprocesar y extraer características significativas de los textos y metadatos de las recetas.
-2. Experimentar con múltiples representaciones de texto (TF-IDF, Word2Vec y BERT) para la extracción de características.
-3. Construir y evaluar modelos predictivos para las calificaciones de las recetas.
-
+Los objetivos principales del proyecto extendido son:
+  1. Preprocesar y extraer características significativas de los textos y metadatos de las recetas.
+  2. Experimentar con múltiples representaciones de texto (TF-IDF, Word2Vec y BERT) para la extracción de características.
+  3. Construir y evaluar modelos predictivos para las calificaciones de las recetas.
+  4. Comparar el proyecto base anterior con el nuevo proyecto base actualizado, corrigiendo algunos errores de metodología usados anteriormente.
+  5. Extender el proyecto utilizando y relacionando no solo 
 
 ## Conjunto de Datos
-El dataset proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
+
+El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
 
 ## Características
 
@@ -28,18 +30,23 @@ El dataset proporcionado incluye 20,130 entradas con información sobre recetas 
 - **Modelos de Aprendizaje Automático**:
   - K-Nearest Neighbors (KNN)
   - Redes Neuronales (NN)
-## Estructura de archivos del proyecto
+- **Extensiones**
+  - Uso de un summarizer preentrenado (con pipelines de Hugging Face) para proporcionar un resumen de la variable 'directions', la cual es una lista de instrucciones que puede contener textos relativamente grandes así como pasos repetidos.
+  - Estudiar la capacidad de los modelos de tipo transformer para la generación de nuevas recetas en tiempo real (Kafka), comparando las prestaciones de esto respecto a su implementación con técnicas de prompting sobre modelos del lenguaje de uso libre (LLAMa, Mixtral, etc.).
+  - Explorar el potencial de técnicas de NLP como el uso de bigramas, part-ofspeech tagging, tesauros, etc., (explotando la funcionalidad disponible en la librería NLTK de Python).
+  - Comparación de prestaciones utilizando distintos embeddings contextuales.
+  - Visualización y análisis empleando técnicas basadas en grafos.
 
-Como se puede observar hay varios notebooks.
-El notebook V4 es un intento fallido de implementear una cabeza de regresión en un modelo pre entrenado BERT para clasificación.
-Los notebooks V3 son los notebooks que se han utilizado para los resultados finales.
-Cada uno de ellos contiene los resultados con distintas features:
-  - All data: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
+## Cambios con respecto a la estructura de archivos del proyecto base de la convocatoria ordinaria
+
+Con respecto a la estructura del proyecto, habíamos implementado una serie de archivos .ipynb, con una V4 de un intento fallido de implementar una cabeza de regresión con un modelo pre entrenado BERT para clasificación, y una serie de archivos V3 para dar con los resultados finales, teniendo en cuenta diferente conjunto de datos:
+  - AllData: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
   - OnlyTextdata: Utiliza solamente los datos de texto como la categoría anterior.
-  - Only some Text Data: Utiliza solamente las columnas de instrucciones y descripciones.
+  - OnlySomeTextData: Utiliza solamente las columnas de instrucciones y descripciones.
   - Directions: Solo utiliza las instrucciones.
   - Descriptions: Solo utiliza las descripciones de las recetas.
 
+Con el objetivo de extender el proyecto y seguir una estructura mucho más rigurosa y flexible, en vez de usar varios archivos con el mismo código usando distintos datos cada uno, se realizará un proyecto con varios archivos en la que cada uno se encargará de tener una funcionalidad del programa. Esto se traduce en que el programa tendrá unas entradas (args) que el usuario incluirá para decidir qué diferentes casos se considerarán en la ejecución. 
 
 ## Métricas utilizadas
 
