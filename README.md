@@ -48,7 +48,7 @@ Con respecto a la estructura del proyecto, habíamos implementado una serie de a
 
 A diferencia del proyecto base, (que contenía múltiples archivos `Jupyter Notebook` con código redundante), esta versión sigue una estructura modular en Python, dividiendo las funcionalidades en diferentes archivos `.py` con argumentos configurables:
 
-´´´
+```
 proyecto_nlp_ml/
 │── data/		# Conjunto de datos
 │── src/		# Código fuente
@@ -61,7 +61,7 @@ proyecto_nlp_ml/
 │── main.py	# Script principal con parámetros configurables
 │── requirements.txt  # Dependencias del proyecto
 │── README.md	# Documentación del proyecto
-´´´
+```
 
 
 ## Métricas utilizadas anteriormente, y nuevas métricas
