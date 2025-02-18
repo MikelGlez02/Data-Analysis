@@ -18,7 +18,7 @@ Los objetivos principales del proyecto extendido son:
 
 ## Conjunto de Datos
 
-El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, entre otros). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
+El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, ```rating```). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
 
 ## Características
 
@@ -46,30 +46,25 @@ Con respecto a la estructura del proyecto, habíamos implementado una serie de a
   - Directions: Solo utiliza las instrucciones.
   - Descriptions: Solo utiliza las descripciones de las recetas.
 
-Con el objetivo de extender el proyecto y seguir una estructura mucho más rigurosa y flexible, en vez de usar varios archivos con el mismo código usando distintos datos cada uno, se realizará un proyecto con varios archivos en la que cada uno se encargará de tener una funcionalidad del programa. Esto se traduce en que el programa tendrá unas entradas (args) que el usuario incluirá para decidir qué diferentes casos se considerarán en la ejecución. 
+Con el objetivo de extender el proyecto y seguir una estructura mucho más rigurosa y flexible, en vez de usar varios archivos con el mismo código y de diferentes datos, se realizará un proyecto con varios archivos .py en la que cada uno se encargará de tener una funcionalidad del programa. Esto se traduce en que el programa tendrá unas entradas (args) que el usuario incluirá para decidir qué diferentes casos se considerarán en la ejecución. 
 
-## Métricas utilizadas
+[INSERTAR MODELO PROYECTO]
 
-La métrica mas utilizada durante el proyecto ha sido la MAE, ya que permite hacernos una idea del rendimiento del proyecto en unidades naturales.
+## Métricas utilizadas anteriormente, y nuevas métricas
 
-Como base hemos utilizado la MAE que tendría un regresor que siempre predice el valor medio de todos los ratings.
-
-Esto es 0.828418629242508.
+En nuestro proyecto, hemos usado la MAE para identificar el rendimiento del regresor, ya que denota cuanto se desvía, en promedio, la magnitud de los errores entre los valores que se han predecido, y los valores reales. En nuestro caso, nos salió de forma general un valor numérico de 0.828418629242508, que indica que, en promedio, las predicciones del regresor tienen un error absoluto de 0.828418629242508 respecto a los valores reales.
 
 ## Limpieza de datos
 
-En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto.
-Esto ha reducido el número de recetas a entorno a 10 000.
-Es conveniente debido a que el tiempo de procesamiento de todo el dataset es muy elevado y esto permite la ejecución en local de este problema con gpu.
+En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto, reduciendo el número de recetas a 10.000. Esto es conveniente a primeras debido a que el tiempo de procesamiento de todo el fichero de datos JSON es muy elevado, lo que permite la ejecución en local de este problema con la GPU.
 
 ## Preprocesado
 
-Se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF.
-Para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
+Se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF, mientras que para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
 
 ## Vectorizado
-Despues se procede a la vectorización de los datos con los 3 modelos
 
+Despues se procede a la vectorización de los datos con los 3 modelos:
 - TF-IDF
 - W2V
 - Bert: Se ha utilizado una max_leght de 64 para evitar colapsar la memoria de los ordenadores
@@ -89,7 +84,6 @@ Se han utilizado varios modelos para medir el rendimiento de los vectorizadores:
 
 ## Resultados
 
-
 ### Visualización de Categorías de Recetas
 - **Top 20 Categorías Más Valoradas**:
   ![Top Categorías](Top20Categorias.png)
@@ -98,6 +92,10 @@ Se han utilizado varios modelos para medir el rendimiento de los vectorizadores:
   ![Todas las Categorías](Categorias.png)
 
 Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. Podemos observar que exhibe un pico más alto y colas más pesadas en comparación con la distribución normal, lo que indica una distribución leptocurtica, lo que significa que los datos tienen una mayor concentración alrededor de la media y valores más extremos en las colas.
+
+### Otros resultados acerca del Modelo
+
+
 
 ### Rendimiento de los Modelos
 
