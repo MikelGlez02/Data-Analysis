@@ -63,6 +63,53 @@ proyecto_nlp_ml/
 │── README.md	# Documentación del proyecto
 ```
 
+## Ejecución del Proyecto
+
+Para ejecutar el proyecto, primero instala las dependencias necesarias recogidas en `requirements.txt` para así proceder con algunas dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+De ahi, ejecuta el script principal con los argumentos correspondientes:
+```bash
+python main.py --mode train --data AllData
+```
+
+Parámetros disponibles:
+- `--mode`: Define si se ejecuta en `train` (entrenamiento) o `evaluate` (evaluación).
+- `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`, etc.).
+- `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`).
+
+## Conclusiones y Futuras Extensiones
+
+Este proyecto mejora significativamente la estructura y metodología del análisis de recetas con NLP y ML. Se han corregido errores del trabajo original y se han incorporado técnicas avanzadas para optimizar el rendimiento predictivo. En futuras iteraciones, se podrían explorar modelos generativos para síntesis de nuevas recetas y ampliar la base de datos con información adicional.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Métricas utilizadas anteriormente, y nuevas métricas
 
