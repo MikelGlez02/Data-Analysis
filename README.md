@@ -18,7 +18,7 @@ Los objetivos principales del proyecto extendido son:
 
 ## Conjunto de Datos
 
-El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, ```rating```). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
+El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, `rating`). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
 
 ## Características
 
@@ -46,9 +46,23 @@ Con respecto a la estructura del proyecto, habíamos implementado una serie de a
   - Directions: Solo utiliza las instrucciones.
   - Descriptions: Solo utiliza las descripciones de las recetas.
 
-Con el objetivo de extender el proyecto y seguir una estructura mucho más rigurosa y flexible, en vez de usar varios archivos con el mismo código y de diferentes datos, se realizará un proyecto con varios archivos .py en la que cada uno se encargará de tener una funcionalidad del programa. Esto se traduce en que el programa tendrá unas entradas (args) que el usuario incluirá para decidir qué diferentes casos se considerarán en la ejecución. 
+A diferencia del proyecto base, (que contenía múltiples archivos `Jupyter Notebook` con código redundante), esta versión sigue una estructura modular en Python, dividiendo las funcionalidades en diferentes archivos `.py` con argumentos configurables:
 
-[INSERTAR MODELO PROYECTO]
+´´´
+proyecto_nlp_ml/
+│── data/		# Conjunto de datos
+│── src/		# Código fuente
+│   ├── preprocess.py  # Preprocesamiento de texto
+│   ├── feature_engineering.py  # Ingeniería de características
+│   ├── model.py  # Entrenamiento y evaluación de modelos
+│   ├── visualization.py  # Análisis y visualización de datos
+│── notebooks/	# Notebooks para análisis exploratorio
+│── results/	# Resultados de experimentos y modelos entrenados
+│── main.py	# Script principal con parámetros configurables
+│── requirements.txt  # Dependencias del proyecto
+│── README.md	# Documentación del proyecto
+´´´
+
 
 ## Métricas utilizadas anteriormente, y nuevas métricas
 
