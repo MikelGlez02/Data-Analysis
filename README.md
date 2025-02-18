@@ -3,41 +3,69 @@
 ## Autor
 Miguel González Martínez (100451423)
 
-# Análisis de Recetas y Predicción de Calificaciones con NLP y ML
+## Análisis de Recetas y Predicción de Calificaciones con NLP y ML
 
 Este repositorio consiste en la extensión del proyecto realizado anteriormente en la convocatoria ordinaria con el objetivo de, no solo revisar, comparar y mejorar el proyecto base planteado anteriormente, sino incluyendo además el apartado de extensión (que no estaba incluido en la convocatoria ordinaria). Concretamente, se utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático de un conjunto de datos que servirá para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. 
 
-## Descripción del Proyecto
+## Objetivos
 
-Los objetivos principales del proyecto extendido son:
-  1. Preprocesar y extraer características significativas de los textos y metadatos de las recetas.
-  2. Experimentar con múltiples representaciones de texto (TF-IDF, Word2Vec y BERT) para la extracción de características.
-  3. Construir y evaluar modelos predictivos para las calificaciones de las recetas.
-  4. Comparar el proyecto base anterior con el nuevo proyecto base actualizado, corrigiendo algunos errores de metodología usados anteriormente.
-  5. Extender el proyecto utilizando y relacionando no solo 
+1. **Preprocesamiento de datos**: Limpieza y extracción de características significativas de los textos y metadatos de las recetas.
+2. **Representación del texto**: Experimentación con múltiples técnicas como TF-IDF, Word2Vec y BERT.
+3. **Construcción de modelos predictivos**: Implementación y evaluación de modelos para predecir la calificación de recetas.
+4. **Comparación con el proyecto base**: Corrección de errores metodológicos y optimización de estrategias anteriores.
+5. **Extensión del proyecto**: Implementación de nuevas técnicas y enfoques.
+6. **Implementación de tecnologías adicionales**: Integración de MongoDB, Kubernetes (K8s), Docker, Kafka, Graphene y PowerBI para mejorar la escalabilidad, visualización y distribución de datos.
+7. **Aplicación de técnicas avanzadas de ML y estadística**: Implementación de CART, SVM, PCA, K-means, Autoencoders, Convolutional Neural Networks (CNNs) y métodos estadísticos como Fisher Matrix, Kalman Filter, Chapman-Kolgomorov y procesos de Markov.
 
 ## Conjunto de Datos
 
-El archivo JSON proporcionado incluye 20,130 entradas con información sobre recetas (instrucciones, categorías, descripciones, `rating`). La tarea principal es predecir la variable `rating` usando otras variables textuales y numéricas como entrada.
+El dataset contiene **20,130 entradas** en formato JSON con información detallada sobre recetas, incluyendo:
+- Instrucciones
+- Categorías
+- Descripciones
+- Información nutricional (calorías, grasas, etc.)
+- Calificación (`rating`, variable objetivo)
 
-## Características
+## Características del Proyecto
 
-- **Preprocesamiento de Texto**: Uso de `spaCy` para tokenización, lematización y eliminación de palabras vacías.
-- **Ingeniería de Características**:
-  - Vectorización con TF-IDF
-  - Embeddings con Word2Vec
-  - Embeddings contextuales con BERT
-- **Modelos de Aprendizaje Automático**:
-  - K-Nearest Neighbors (KNN)
-  - Redes Neuronales (NN)
-- **Extensiones**
-  - Uso de un summarizer preentrenado (con pipelines de Hugging Face) para proporcionar un resumen de la variable 'directions', la cual es una lista de instrucciones que puede contener textos relativamente grandes así como pasos repetidos.
-  - Estudiar la capacidad de los modelos de tipo transformer para la generación de nuevas recetas en tiempo real (Kafka), comparando las prestaciones de esto respecto a su implementación con técnicas de prompting sobre modelos del lenguaje de uso libre (LLAMa, Mixtral, etc.).
-  - Explorar el potencial de técnicas de NLP como el uso de bigramas, part-ofspeech tagging, tesauros, etc., (explotando la funcionalidad disponible en la librería NLTK de Python).
-  - Comparación de prestaciones utilizando distintos embeddings contextuales.
-  - Visualización y análisis empleando técnicas basadas en grafos.
+### Preprocesamiento de Texto
+- Tokenización, lematización y eliminación de palabras vacías usando `spaCy`.
+- Creación de representaciones vectoriales del texto mediante distintas técnicas.
 
-## Cambios con respecto a la estructura de archivos del proyecto base de la convocatoria ordinaria
+### Ingeniería de Características
+- **TF-IDF** para ponderar términos relevantes.
+- **Word2Vec** para representar palabras en un espacio semántico.
+- **BERT embeddings** para análisis contextual avanzado.
+
+### Modelos de Aprendizaje Automático
+- **K-Nearest Neighbors (KNN)** para clasificación basada en similitud.
+- **Redes Neuronales (NN)** para una predicción más robusta.
+- **Árboles de decisión CART** para interpretabilidad.
+- **Máquinas de soporte vectorial (SVM)** para clasificación de alta dimensionalidad.
+- **Análisis de Componentes Principales (PCA)** para reducción de dimensionalidad.
+- **K-means** para agrupamiento de recetas similares.
+- **Autoencoders** para aprendizaje de representaciones latentes.
+- **Redes Neuronales Convolucionales (CNNs)** para clasificación avanzada.
+
+### Métodos Estadísticos Implementados
+- **Matriz de Fisher** para evaluar la información contenida en los datos.
+- **Filtro de Kalman** para predicción de series temporales.
+- **Chapman-Kolmogorov** para modelado de estados en procesos de decisión.
+- **Cadenas de Markov** para modelar transiciones de estados en datos secuenciales.
+
+### Extensiones Implementadas
+- **Resumen de instrucciones**: Uso de `Hugging Face` para generar resúmenes de los pasos de preparación.
+- **Generación de recetas** en tiempo real con modelos `Transformer` y comparación con `LLAMA` y `Mixtral`.
+- **Uso de técnicas avanzadas de NLP**: Análisis de bigramas, etiquetado gramatical (POS tagging), tesauros, etc.
+- **Comparación de embeddings contextuales** para identificar el más adecuado.
+- **Visualización de relaciones semánticas** mediante técnicas basadas en grafos.
+- **Almacenamiento en MongoDB**: Uso de bases de datos NoSQL para almacenar y gestionar grandes volúmenes de datos.
+- **Despliegue con Docker y Kubernetes**: Contenerización del proyecto y escalabilidad mediante orquestación con K8s.
+- **Streaming de datos con Kafka**: Procesamiento de datos en tiempo real mediante Kafka para flujos continuos de información.
+- **Creación de API GraphQL con Graphene**: Implementación de una API para consultas eficientes y estructuradas.
+- **Dashboard con PowerBI**: Visualización de resultados en un entorno interactivo y accesible.
+
+## Estructura del Proyecto
 
 Con respecto a la estructura del proyecto, habíamos implementado una serie de archivos .ipynb, con una V4 de un intento fallido de implementar una cabeza de regresión con un modelo pre entrenado BERT para clasificación, y una serie de archivos V3 para dar con los resultados finales, teniendo en cuenta diferente conjunto de datos:
   - AllData: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
@@ -46,7 +74,7 @@ Con respecto a la estructura del proyecto, habíamos implementado una serie de a
   - Directions: Solo utiliza las instrucciones.
   - Descriptions: Solo utiliza las descripciones de las recetas.
 
-A diferencia del proyecto base, (que contenía múltiples archivos `Jupyter Notebook` con código redundante), esta versión sigue una estructura modular en Python, dividiendo las funcionalidades en diferentes archivos `.py` con argumentos configurables:
+A diferencia del proyecto base, que contenía múltiples archivos `Jupyter Notebook` con código redundante, esta versión sigue una estructura modular en Python, dividiendo las funcionalidades en diferentes archivos `.py` con argumentos configurables:
 
 ```
 proyecto_nlp_ml/
@@ -56,8 +84,12 @@ proyecto_nlp_ml/
 │   ├── feature_engineering.py  # Ingeniería de características
 │   ├── model.py  # Entrenamiento y evaluación de modelos
 │   ├── visualization.py  # Análisis y visualización de datos
+│   ├── database.py  # Conexión y gestión de datos en MongoDB
+│   ├── streaming.py  # Implementación de Kafka para flujo de datos
+│   ├── api.py  # Implementación de API GraphQL con Graphene
 │── notebooks/	# Notebooks para análisis exploratorio
 │── results/	# Resultados de experimentos y modelos entrenados
+│── deployment/	# Configuración de Docker y Kubernetes
 │── main.py	# Script principal con parámetros configurables
 │── requirements.txt  # Dependencias del proyecto
 │── README.md	# Documentación del proyecto
@@ -65,12 +97,12 @@ proyecto_nlp_ml/
 
 ## Ejecución del Proyecto
 
-Para ejecutar el proyecto, primero instala las dependencias necesarias recogidas en `requirements.txt` para así proceder con algunas dependencias:
+Para ejecutar el proyecto, primero instala las dependencias necesarias:
 ```bash
 pip install -r requirements.txt
 ```
 
-De ahi, ejecuta el script principal con los argumentos correspondientes:
+Ejecuta el script principal con los argumentos correspondientes:
 ```bash
 python main.py --mode train --data AllData
 ```
@@ -78,17 +110,11 @@ python main.py --mode train --data AllData
 Parámetros disponibles:
 - `--mode`: Define si se ejecuta en `train` (entrenamiento) o `evaluate` (evaluación).
 - `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`, etc.).
-- `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`).
+- `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`, `SVM`, `CART`, etc.).
 
 ## Conclusiones y Futuras Extensiones
 
-Este proyecto mejora significativamente la estructura y metodología del análisis de recetas con NLP y ML. Se han corregido errores del trabajo original y se han incorporado técnicas avanzadas para optimizar el rendimiento predictivo. En futuras iteraciones, se podrían explorar modelos generativos para síntesis de nuevas recetas y ampliar la base de datos con información adicional.
-
-
-
-
-
-
+Este proyecto mejora significativamente la estructura y metodología del análisis de recetas con NLP y ML. Se han corregido errores del trabajo original y se han incorporado técnicas avanzadas para optimizar el rendimiento predictivo. Con la integración de MongoDB, Docker, Kubernetes, Kafka, Graphene, PowerBI y métodos avanzados de Machine Learning y estadística, se amplían las capacidades del sistema, permitiendo mayor escalabilidad, eficiencia y accesibilidad de los datos. En futuras iteraciones, se podrían explorar modelos generativos para síntesis de nuevas recetas y ampliar la base de datos con información adicional.
 
 
 
