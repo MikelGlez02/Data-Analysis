@@ -1,11 +1,11 @@
 # Proyecto Final: Tratamiento de Datos 2024/25 (Convocatoria Extraordinaria)
 
 ## Autor
-Miguel González Martínez (100451423)
+Miguel González Martínez (100451423, Convocatoria Extraordinaria) y Carlos de Quinto Cáceres (100451547, Convocatoria Ordinaria)
 
 ## Análisis de Recetas y Predicción de Calificaciones con NLP y ML
 
-Este repositorio consiste en la extensión del proyecto realizado anteriormente en la convocatoria ordinaria con el objetivo de, no solo revisar, comparar y mejorar el proyecto base planteado anteriormente, sino incluyendo además el apartado de extensión (que no estaba incluido en la convocatoria ordinaria). Concretamente, se utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático de un conjunto de datos que servirá para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos. 
+Este repositorio consiste en la extensión del proyecto realizado anteriormente en la convocatoria ordinaria con el objetivo de, no solo revisar, comparar y mejorar el proyecto base planteado anteriormente, sino incluyendo además el apartado de extensión (que no estaba incluido en la convocatoria ordinaria). Concretamente, se utiliza técnicas avanzadas de Procesamiento de Lenguaje Natural (NLP) y modelos de aprendizaje automático de un conjunto de datos que servirá para analizar y predecir calificaciones de recetas basadas en características textuales y datos numéricos, además de proporcionar un resumidor entrenado para mejorar la experiencia del usuario. Cabe resaltar que no solo se irán detallando las diferencias entre la versión original y esta nueva versión durante el resúmen, sino que además se proporcionará un apartado específico en el que se expliquen en detalle las diferencias entre ambas versiones.
 
 ## Objetivos
 
@@ -47,27 +47,15 @@ El dataset contiene **20,130 entradas** en formato JSON con información detalla
 - **Autoencoders** para aprendizaje de representaciones latentes.
 - **Redes Neuronales Convolucionales (CNNs)** para clasificación avanzada.
 
-### Métodos Estadísticos Implementados
-- **Matriz de Fisher** para evaluar la información contenida en los datos.
-- **Filtro de Kalman** para predicción de series temporales.
-- **Chapman-Kolmogorov** para modelado de estados en procesos de decisión.
-- **Cadenas de Markov** para modelar transiciones de estados en datos secuenciales.
-
 ### Extensiones Implementadas
-- **Resumen de instrucciones**: Uso de `Hugging Face` para generar resúmenes de los pasos de preparación.
+- **Resumen de instrucciones**: Uso de `Hugging Face` para generar resúmenes de los pasos de preparación, y el uso de un resumidor entrenado.
 - **Generación de recetas** en tiempo real con modelos `Transformer` y comparación con `LLAMA` y `Mixtral`.
 - **Uso de técnicas avanzadas de NLP**: Análisis de bigramas, etiquetado gramatical (POS tagging), tesauros, etc.
 - **Comparación de embeddings contextuales** para identificar el más adecuado.
-- **Visualización de relaciones semánticas** mediante técnicas basadas en grafos.
-- **Almacenamiento en MongoDB**: Uso de bases de datos NoSQL para almacenar y gestionar grandes volúmenes de datos.
-- **Despliegue con Docker y Kubernetes**: Contenerización del proyecto y escalabilidad mediante orquestación con K8s.
-- **Streaming de datos con Kafka**: Procesamiento de datos en tiempo real mediante Kafka para flujos continuos de información.
-- **Creación de API GraphQL con Graphene**: Implementación de una API para consultas eficientes y estructuradas.
-- **Dashboard con PowerBI**: Visualización de resultados en un entorno interactivo y accesible.
 
 ## Estructura del Proyecto
 
-Con respecto a la estructura del proyecto, habíamos implementado una serie de archivos .ipynb, con una V4 de un intento fallido de implementar una cabeza de regresión con un modelo pre entrenado BERT para clasificación, y una serie de archivos V3 para dar con los resultados finales, teniendo en cuenta diferente conjunto de datos:
+Con respecto a la estructura del proyecto, habíamos implementado una serie de archivos .ipynb, con una V4 de un intento fallido de implementar una cabeza de regresión con un modelo pre entrenado BERT para clasificación, y una serie de archivos V3 para dar con los resultados finales, teniendo en cuenta los diferentes conjuntos de datos:
   - AllData: Utiliza todos los datos de texto (instrucciones, categorias, descripciones, titulo) asi como numericos (calorías, grasas etc.)
   - OnlyTextdata: Utiliza solamente los datos de texto como la categoría anterior.
   - OnlySomeTextData: Utiliza solamente las columnas de instrucciones y descripciones.
@@ -83,10 +71,7 @@ proyecto_nlp_ml/
 │   ├── preprocess.py  # Preprocesamiento de texto
 │   ├── feature_engineering.py  # Ingeniería de características
 │   ├── model.py  # Entrenamiento y evaluación de modelos
-│   ├── visualization.py  # Análisis y visualización de datos
-│   ├── database.py  # Conexión y gestión de datos en MongoDB
-│   ├── streaming.py  # Implementación de Kafka para flujo de datos
-│   ├── api.py  # Implementación de API GraphQL con Graphene
+│   ├── summarizer.py  # Entrenamiento y evaluación de modelos
 │── notebooks/	# Notebooks para análisis exploratorio
 │── results/	# Resultados de experimentos y modelos entrenados
 │── deployment/	# Configuración de Docker y Kubernetes
@@ -97,79 +82,27 @@ proyecto_nlp_ml/
 
 ## Ejecución del Proyecto
 
-Para ejecutar el proyecto, primero instala las dependencias necesarias:
+Se ejecuta el script principal con los argumentos correspondientes:
 ```bash
-pip install -r requirements.txt
-```
-
-Ejecuta el script principal con los argumentos correspondientes:
-```bash
-python main.py --mode train --data AllData
+python main.py --mode train --data AllData --model KNN --summarizer BERTSUM
 ```
 
 Parámetros disponibles:
 - `--mode`: Define si se ejecuta en `train` (entrenamiento) o `evaluate` (evaluación).
 - `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`, etc.).
 - `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`, `SVM`, `CART`, etc.).
+- `--summarizer`: Especifica el resumidor preentrenado del trabajo de extensión con Hugging Face (`BART`, `T5`, `BERTSUM`, `PEGASUS`, `CART`, etc.).
 
-## Conclusiones y Futuras Extensiones
+De esta forma, se proporciona un modelo más dinámico de tal forma que, en vez de ejecutar con varios archivos de diferente código, simplemente se proporcionan 2 que permitan ejecutar varias posibilidades según lo que se considere.
 
-Este proyecto mejora significativamente la estructura y metodología del análisis de recetas con NLP y ML. Se han corregido errores del trabajo original y se han incorporado técnicas avanzadas para optimizar el rendimiento predictivo. Con la integración de MongoDB, Docker, Kubernetes, Kafka, Graphene, PowerBI y métodos avanzados de Machine Learning y estadística, se amplían las capacidades del sistema, permitiendo mayor escalabilidad, eficiencia y accesibilidad de los datos. En futuras iteraciones, se podrían explorar modelos generativos para síntesis de nuevas recetas y ampliar la base de datos con información adicional.
+## Convocatoria Ordinaria: Resultados
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Métricas utilizadas anteriormente, y nuevas métricas
-
-En nuestro proyecto, hemos usado la MAE para identificar el rendimiento del regresor, ya que denota cuanto se desvía, en promedio, la magnitud de los errores entre los valores que se han predecido, y los valores reales. En nuestro caso, nos salió de forma general un valor numérico de 0.828418629242508, que indica que, en promedio, las predicciones del regresor tienen un error absoluto de 0.828418629242508 respecto a los valores reales.
-
-## Limpieza de datos
-
-En primer lugar se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto, reduciendo el número de recetas a 10.000. Esto es conveniente a primeras debido a que el tiempo de procesamiento de todo el fichero de datos JSON es muy elevado, lo que permite la ejecución en local de este problema con la GPU.
-
-## Preprocesado
-
-Se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF, mientras que para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
-
-## Vectorizado
-
-Despues se procede a la vectorización de los datos con los 3 modelos:
-- TF-IDF
-- W2V
-- Bert: Se ha utilizado una max_leght de 64 para evitar colapsar la memoria de los ordenadores
-
-
-
-## Modelos utilizados
-Se han utilizado varios modelos para medir el rendimiento de los vectorizadores:
-
-- KNN: de scikit learn
-
-- Red neuronal simple: La red SimpleNN es una red neuronal completamente conectada con una capa oculta de 128 neuronas y activación ReLU, seguida de una capa de salida con 1 neurona. Es adecuada para tareas simples de regresión o clasificación binaria. Su estructura permite procesar entradas de tamaño definido por input_size.
-
-- Red neuronal compleja: La red ComplexNN es una red neuronal profunda y configurable con múltiples capas ocultas (por defecto 256, 128 y 64 neuronas). Cada capa incluye activación ReLU, normalización BatchNorm, y Dropout para regularización. Es adecuada para tareas más complejas de regresión o clasificación, permitiendo personalizar tanto el tamaño de las capas ocultas como la tasa de dropout.
-
-- Red Bert pre entrenada de hugging face
-
-## Resultados
+Se detallan los aspectos importantes:
+- **Métricas utilizadas**: En nuestro proyecto, hemos usado la MAE para identificar el rendimiento del regresor, ya que denota cuanto se desvía, en promedio, la magnitud de los errores entre los valores que se han predecido, y los valores reales. En nuestro caso, nos salió de forma general un valor numérico de 0.828418629242508, que indica que, en promedio, las predicciones del regresor tienen un error absoluto de 0.828418629242508 respecto a los valores reales.
+- **Limpieza de datos**: Se ha limpiado la base de datos de todos los valores NA que contenía, eliminando asi todas las recetas que contienen un NA tanto numerico como de texto, reduciendo el número de recetas a 10. Esto es conveniente a primeras debido a que el tiempo de procesamiento de todo el fichero de datos JSON es muy elevado, lo que permite la ejecución en local de este problema con la GPU.
+- **Preprocesado**: Se ha preprocesado el texto para las vectorizaciones que lo necesiten como TF-IDF, mientras que para el preprocesado del texto se ha usado spacy con el modelo 'en_core_web_sm'
+- **Vectorizado**: Despues se procede a la vectorización de los datos con los 3 modelos (TF-IDF, W2V, BERT con max_length=64 para evitar que colapse la memoria del ordenador)
+- **Modelos utilizados**: Se han utilizado varios modelos para medir el rendimiento de los vectorizadores, como KNN de scikit learn, una red neuronal simple (SimpleNN) completamente conectada con una capa oculta de 128 neuronas y activación ReLU, seguida de una capa de salida con 1 neurona, es adecuada para tareas simples de regresión o clasificación binaria, y su estructura permite procesar entradas de tamaño definido por input_size. Por otro lado, ComplexNN es una red neuronal profunda y configurable con múltiples capas ocultas (por defecto 256, 128 y 64 neuronas) donde cada capa incluye activación ReLU, normalización BatchNorm, y Dropout para regularización, y es adecuada para tareas más complejas de regresión o clasificación, permitiendo personalizar tanto el tamaño de las capas ocultas como la tasa de dropout. Por último, también se proporciona RED-BERT pre entrenada de hugging face
 
 ### Visualización de Categorías de Recetas
 - **Top 20 Categorías Más Valoradas**:
@@ -180,15 +113,9 @@ Se han utilizado varios modelos para medir el rendimiento de los vectorizadores:
 
 Es interesante observar que la mayoría de categorías tiene una media similar, que la desviación típica de los datos es menor que 1 y la mediana es muy estable. Podemos observar que exhibe un pico más alto y colas más pesadas en comparación con la distribución normal, lo que indica una distribución leptocurtica, lo que significa que los datos tienen una mayor concentración alrededor de la media y valores más extremos en las colas.
 
-### Otros resultados acerca del Modelo
+### Rendimiento de los Modelos y Conclusión
 
-
-
-### Rendimiento de los Modelos
-
-El rendimiento de los modelos se puede observar los excels. Hay un excel que recopila todos los datos(Resultado Datos), mientras que (Comparacion entre vectorizaciones) ayuda a comparar el rendimiento de las vectorizaciones dependiendo de los datos de entrada mencionados anteriormente.
-
-Aqui podemos ver los resultados para la red neuronal compleja:
+El rendimiento de los modelos se puede observar los excels. Hay un excel que recopila todos los datos(Resultado Datos), mientras que (Comparacion entre vectorizaciones) ayuda a comparar el rendimiento de las vectorizaciones dependiendo de los datos de entrada mencionados anteriormente. Aqui podemos ver los resultados para la red neuronal compleja:
 
 | Model  | ALL DATA    | ONLY TEXT DATA | SomeTextData | Directions  | Descriptions |
 |--------|-------------|----------------|-------------|-------------|--------------|
@@ -197,17 +124,29 @@ Aqui podemos ver los resultados para la red neuronal compleja:
 | BERT   | 0.711494803 | 0.644052863    | 0.690597415 | 0.720204115 | 0.697323203  |
 
 
-Se pueden observar diversos patrones al cambiar de datos
+Se pueden observar diversos patrones al cambiar de datos: la MAE del modelo bert pre entrenado con fine tunning resulta en una MAE de 2.82. Este resultado es la media -1, ya que el predictor siempre ha tenido como salida 1, y por tanto el MAE es la media -1. Esto sucede porque el modelo esta prediciendo siempre uno, lo que nos indica que la cabeza de regresion no se ha implementado correctamente. Los mejores resultados parecen ser obtenidos por BERT cuando se utilizan los datos adecuados. Es probable que un mejor rendimiento se logre aumentando el max length de BERT, siempre que se disponga de un equipo más potente. Por otro lado, ampliar aún más la red neuronal compleja podría también mejorar su rendimiento. En contraste, la red KNN resulta poco expresiva al manejar grandes volúmenes de datos.
 
- La MAE del modelo bert pre entrenado con fine tunning resulta en una MAE de 2.82. Este resultado es la media -1, ya que el predictor siempre ha tenido como salida 1, y por tanto el MAE es la media -1.
- Esto sucede porque el modelo esta prediciendo siempre uno, lo que nos indica que la cabeza de regresion no se ha implementado correctamente.
+## Convocatoria Extraordinaria: Extensión del Proyecto. ¿Qué diferencias hay?
 
-## Conclusión
+Como se ha mencionado antes, con el objetivo de mejorar la experiencia del usuario al seguir las recetas con resúmenes más breves, he implementado un resumidor preentrenado mediante Hugging Face para prevenir así pasos repetitivos y redundantes, como respuestas extensas. Se van a utilizar 4 modelos preentrenados:
+- **BART**:
+- 
+
+BART (facebook/bart-large-cnn): Un modelo basado en BART, ampliamente utilizado para tareas de resumen de texto.
+T5 (t5-small): Un modelo que se ha entrenado en tareas de NLP y se adapta bien a tareas de resumen.
+PEGASUS (google/pegasus-xsum): Un modelo especializado en resúmenes extractivos y abstracción de textos.
+Funcionamiento
+Los modelos fueron aplicados a las instrucciones de una receta de ejemplo, y los resúmenes generados fueron analizados para evaluar su calidad y coherencia. Cada modelo fue configurado para generar un resumen de entre 50 y 150 palabras, con base en la longitud del texto original.
 
 
-Los mejores resultados parecen ser obtenidos por BERT cuando se utilizan los datos adecuados. Es probable que un mejor rendimiento se logre aumentando el max length de BERT, siempre que se disponga de un equipo más potente.
 
-Por otro lado, ampliar aún más la red neuronal compleja podría también mejorar su rendimiento. En contraste, la red KNN resulta poco expresiva al manejar grandes volúmenes de datos.
+
+
+
+
+
+
+
 
 ## Herramientas y Librerías Usadas del Proyecto
 
