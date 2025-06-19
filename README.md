@@ -84,14 +84,14 @@ proyecto_nlp_ml/
 
 Se ejecuta el script principal con los argumentos correspondientes:
 ```bash
-python main.py --mode train --data AllData --model KNN --summarizer BERTSUM
+python main.py --mode train --data AllData --model KNN --summarizer PEGASUS
 ```
 
 Parámetros disponibles:
 - `--mode`: Define si se ejecuta en `train` (entrenamiento) o `evaluate` (evaluación).
-- `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`, etc.).
-- `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`, `SVM`, `CART`, etc.).
-- `--summarizer`: Especifica el resumidor preentrenado del trabajo de extensión con Hugging Face (`BART`, `T5`, `BERTSUM`, `PEGASUS`, `CART`, etc.).
+- `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`).
+- `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`, `SVM`, `CART`).
+- `--summarizer`: Especifica el resumidor preentrenado del trabajo de extensión con Hugging Face (`BART`, `T5`, `BERTSUM`, `PEGASUS`).
 
 De esta forma, se proporciona un modelo más dinámico de tal forma que, en vez de ejecutar con varios archivos de diferente código, simplemente se proporcionan 2 que permitan ejecutar varias posibilidades según lo que se considere.
 
@@ -129,17 +129,16 @@ Se pueden observar diversos patrones al cambiar de datos: la MAE del modelo bert
 ## Convocatoria Extraordinaria: Extensión del Proyecto. ¿Qué diferencias hay?
 
 Como se ha mencionado antes, con el objetivo de mejorar la experiencia del usuario al seguir las recetas con resúmenes más breves, he implementado un resumidor preentrenado mediante Hugging Face para prevenir así pasos repetitivos y redundantes, como respuestas extensas. Se van a utilizar 4 modelos preentrenados:
-- **BART**:
-- 
+- **Bidirectional and Auto-Regressive Transformers (BART)**: Mantiene un equilibrio entre calidad gramatical y fidelidad, puede manejar entradas de longitud moderada.
+- **Text-To-Text Transfer Transformer (T5)**: Un modelo que se ha entrenado en tareas NLP y es adaptable a múltiples tareas, incluyendo resumen.
+- **Pre-training with Extracted Gap-sentences for Abstractive Summarization (PEGASUS)**: Entrenado con estrategia que simula el resumen real (gap-sentence), genera textos compactos con alta relevancia, y rinde excelente en benchmarks de resumen (como XSum, CNN/DailyMail).
+- **Longformer Encoder-Decoder (LED)**: Diseñado para entradas muy largas (hasta 16,384 tokens o más), por lo que es ideal para datos extensos. Usa atención local y global eficiente, lo que le permite escalar sin saturar memoria.
 
-BART (facebook/bart-large-cnn): Un modelo basado en BART, ampliamente utilizado para tareas de resumen de texto.
-T5 (t5-small): Un modelo que se ha entrenado en tareas de NLP y se adapta bien a tareas de resumen.
-PEGASUS (google/pegasus-xsum): Un modelo especializado en resúmenes extractivos y abstracción de textos.
-Funcionamiento
-Los modelos fueron aplicados a las instrucciones de una receta de ejemplo, y los resúmenes generados fueron analizados para evaluar su calidad y coherencia. Cada modelo fue configurado para generar un resumen de entre 50 y 150 palabras, con base en la longitud del texto original.
+Para realizar esto de forma práctica, simplemente se usa la función pipeline con el modelo definido en concreto que se debe utilizar, ya sea para BART (facebook/bart-large-cnn), T5 (t5-small), PEGASUS (google/pegasus-xsum) y LED (allenai/led-base-16384). Se aplicaron a las instrucciones de algunas recetas para así comprobar cómo de coherente y claras son las frases resumidas entre 75 y 100 palabras, por ejemplo. 
 
+### Resultados
 
-
+A continuación se presentan algunos resúmenes por cada modelo:
 
 
 
