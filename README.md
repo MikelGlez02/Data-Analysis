@@ -85,6 +85,10 @@ proyecto_nlp_ml/
 
 ## Ejecución del Proyecto
 
+Lo primero de todo, se ejecuta el archivo . para instalar los requerimientos de algunas librerías de Python:
+
+
+
 Se ejecuta el script principal con los argumentos correspondientes:
 ```bash
 python main.py --mode train --data AllData --model KNN --summarizer PEGASUS
@@ -128,6 +132,45 @@ El rendimiento de los modelos se puede observar los excels. Hay un excel que rec
 
 
 Se pueden observar diversos patrones al cambiar de datos: la MAE del modelo bert pre entrenado con fine tunning resulta en una MAE de 2.82. Este resultado es la media -1, ya que el predictor siempre ha tenido como salida 1, y por tanto el MAE es la media -1. Esto sucede porque el modelo esta prediciendo siempre uno, lo que nos indica que la cabeza de regresion no se ha implementado correctamente. Los mejores resultados parecen ser obtenidos por BERT cuando se utilizan los datos adecuados. Es probable que un mejor rendimiento se logre aumentando el max length de BERT, siempre que se disponga de un equipo más potente. Por otro lado, ampliar aún más la red neuronal compleja podría también mejorar su rendimiento. En contraste, la red KNN resulta poco expresiva al manejar grandes volúmenes de datos.
+
+## Convocatoria Extraordinaria: Visualización Extra del Proyecto Base
+
+Se va a calcular, además, varias métricas interesantes a partir del conjunto de datos de recetas (se ha tomado, por simplicidad, unas 10.000 entradas):
+
+```python
+nutrition_stats = df[['calories', 'fat', 'protein', 'sodium']].describe()
+print(nutrition_stats)
+```
+Aquí se tiene los datos representados en una tabla:
+
+|         | calories     | fat         | protein     | sodium      |
+|---------|--------------|-------------|-------------|-------------|
+| count   | 62.000000    | 62.000000   | 62.000000   | 62.000000   |
+| mean    | 390.790323   | 21.467742   | 18.758065   | 672.758065  |
+| std     | 251.847090   | 20.069681   | 14.009079   | 459.534679  |
+| min     | 107.000000   | 0.000000    | 2.000000    | 0.000000    |
+| 25%     | 174.750000   | 6.000000    | 6.000000    | 329.750000  |
+| 50%     | 351.500000   | 16.000000   | 14.500000   | 559.000000  |
+| 75%     | 547.000000   | 32.000000   | 30.000000   | 977.250000  |
+| max     | 948.000000   | 79.000000   | 59.000000   | 1696.000000 |
+
+Se puede observar que hay una mayoría de calorías en los primeros elementos del archivo JSON, y también la media significativa de calorias y sodio.
+
+Además, las correlaciones nutricionales entre diferentes atributos se puede observar en la siguiente tabla:
+
+```python
+correlation_matrix = df[['calories', 'fat', 'protein', 'sodium']].corr()
+print(correlation_matrix)
+```
+
+|          | calories | fat      | protein  | sodium   |
+|----------|----------|----------|----------|----------|
+| calories | 1.000000 | 0.844050 | 0.632249 | 0.473643 |
+| fat      | 0.844050 | 1.000000 | 0.562679 | 0.436061 |
+| protein  | 0.632249 | 0.562679 | 1.000000 | 0.426460 |
+| sodium   | 0.473643 | 0.436061 | 0.426460 | 1.000000 |
+
+Se puede apreciar que tanto calorías como grasas tienen una alta correlación (**0.844**), lo que sugiere que alimentos con más calorías tienden a tener más grasa. Por el otro lado, **Proteínas** están moderadamente correlacionadas con calorías (**0.632**) y grasas (**0.563**), y finalmente **Sodio** tiene la correlación más débil con las demás variables. Otros aspectos interesantes es que, el promedio de pasos por receta suele ser de 5.3 aproximadamente, "Salt" es el ingrediente más común, la categoría "Vegetarian" es la más frecuente, y el rating promedio es de 3.88 con una distribución que muestra que muchas recetas tienen ratings altos (75% tienen 4.375 o más).
 
 ## Convocatoria Extraordinaria: Extensión del Proyecto.
 
