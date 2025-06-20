@@ -134,7 +134,7 @@ Como se ha mencionado antes, con el objetivo de mejorar la experiencia del usuar
 - **Pre-training with Extracted Gap-sentences for Abstractive Summarization (PEGASUS)**: Entrenado con estrategia que simula el resumen real (gap-sentence), genera textos compactos con alta relevancia, y rinde excelente en benchmarks de resumen (como XSum, CNN/DailyMail).
 - **Longformer Encoder-Decoder (LED)**: Diseñado para entradas muy largas (hasta 16,384 tokens o más), por lo que es ideal para datos extensos. Usa atención local y global eficiente, lo que le permite escalar sin saturar memoria.
 
-Para realizar esto de forma práctica, simplemente se usa la función pipeline con el modelo definido en concreto que se debe utilizar, ya sea para BART (facebook/bart-large-cnn), T5 (t5-small), PEGASUS (google/pegasus-xsum) y LED (allenai/led-base-16384). Se aplicaron a las instrucciones de algunas recetas para así comprobar cómo de coherente y claras son las frases resumidas entre 75 y 100 palabras, por ejemplo. 
+Para realizar esto de forma práctica, simplemente se usa la función pipeline con el modelo definido en concreto que se debe utilizar, ya sea para BART (```facebook/bart-large-cnn```), T5 (```t5-small```), PEGASUS (```google/pegasus-xsum```) y LED (```allenai/led-base-16384```). Se aplicaron a las instrucciones de algunas recetas para así comprobar cómo de coherente y claras son las frases resumidas entre 75 y 100 palabras, por ejemplo. 
 
 ### Resultados
 
