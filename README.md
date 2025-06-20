@@ -67,14 +67,17 @@ A diferencia del proyecto base, que contenía múltiples archivos `Jupyter Noteb
 ```
 proyecto_nlp_ml/
 │── data/		# Conjunto de datos
+│   ├── full_format_recipes.json  # Todos los datos
+│   ├── limited_format_recipes.json  # Algunos datos
+│   ├── new_format_recipes.json  # Datos nuevos
 │── src/		# Código fuente
 │   ├── preprocess.py  # Preprocesamiento de texto
 │   ├── feature_engineering.py  # Ingeniería de características
 │   ├── model.py  # Entrenamiento y evaluación de modelos
 │   ├── summarizer.py  # Entrenamiento y evaluación de modelos
-│── notebooks/	# Notebooks para análisis exploratorio
+│── notebooks/	# Notebooks para análisis exploratorio (Convocatoria Ordinaria)
+│   ├── ... .ipynb  # Ejemplos de casos concretos 
 │── results/	# Resultados de experimentos y modelos entrenados
-│── deployment/	# Configuración de Docker y Kubernetes
 │── main.py	# Script principal con parámetros configurables
 │── requirements.txt  # Dependencias del proyecto
 │── README.md	# Documentación del proyecto
