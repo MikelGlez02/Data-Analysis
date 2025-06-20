@@ -94,7 +94,7 @@ Parámetros disponibles:
 - `--mode`: Define si se ejecuta en `train` (entrenamiento) o `evaluate` (evaluación).
 - `--data`: Selecciona qué conjunto de datos usar (`AllData`, `OnlyTextData`, `Directions`).
 - `--model`: Especifica el modelo a entrenar (`KNN`, `NN`, `BERT`, `SVM`, `CART`).
-- `--summarizer`: Especifica el resumidor preentrenado del trabajo de extensión con Hugging Face (`BART`, `T5`, `BERTSUM`, `PEGASUS`).
+- `--summarizer`: Especifica el resumidor preentrenado del trabajo de extensión con Hugging Face (`BART`, `T5`, `LED`, `PEGASUS`).
 
 De esta forma, se proporciona un modelo más dinámico de tal forma que, en vez de ejecutar con varios archivos de diferente código, simplemente se proporcionan 2 que permitan ejecutar varias posibilidades según lo que se considere.
 
