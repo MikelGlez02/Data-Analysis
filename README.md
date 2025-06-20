@@ -140,7 +140,40 @@ Para realizar esto de forma práctica, simplemente se usa la función pipeline c
 
 A continuación se presentan algunos resúmenes por cada modelo:
 
+### **Recipe Summaries Comparison Table**  
 
+| **Texto Original (Steps)**                                                                 | **Resumen BART**                                                                 | **Resumen T5**                                                                 | **Resumen PEGASUS**                                                                 | **Resumen LED**                                                                 |
+|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| **Lentil, Apple, and Turkey Wrap**                                                        |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| 1. Simmer lentils with stock, celery, carrot, thyme, and salt for 30 mins.                | Cook lentils with vegetables and stock until tender.                            | Simmer lentils with veggies and stock.                                        | Boil lentils with stock and vegetables until soft.                                 | Lentils cooked with stock, celery, carrot, and thyme.                         |
+| 2. Mix in tomato, apple, lemon juice, olive oil, and pepper.                              | Combine tomato, apple, and seasonings with lentils.                             | Fold in tomato, apple, and dressing.                                          | Add tomato, apple, and lemon juice to lentils.                                     | Lentils mixed with tomato, apple, and lemon.                                  |
+| 3. Assemble wrap with lavash, lentil mix, and turkey.                                     | Spread lentil mix on lavash and roll with turkey.                               | Layer wrap with lentils and turkey.                                           | Fill lavash with lentils and turkey.                                               | Lentil and turkey wrap assembled.                                             |
+|                                                                                           |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| **Boudin Blanc Terrine with Red Onion Confit**                                            |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| 1. Simmer first 9 ingredients with shallots; chill overnight.                             | Prepare terrine base with shallots and chill.                                   | Mix ingredients, simmer, and refrigerate.                                     | Combine ingredients, steep, and chill.                                             | Blend terrine mixture and refrigerate overnight.                              |
+| 2. Bake at 325°F in a plastic-lined pan for 1.5 hours.                                    | Bake terrine until set.                                                         | Cook terrine until firm.                                                      | Bake until terrine pulls from pan edges.                                           | Terrine baked until fully set.                                                |
+|                                                                                           |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| **Potato and Fennel Soup**                                                                |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| 1. Sauté fennel and onion in butter for 10 mins.                                          | Cook fennel and onion until soft.                                               | Soften fennel and onion in butter.                                            | Sauté fennel and onion in butter.                                                  | Fennel and onion sautéed in butter.                                           |
+| 2. Simmer potatoes and broth until tender (~20 mins).                                      | Boil potatoes in broth until soft.                                             | Cook potatoes in broth.                                                       | Simmer potatoes in broth.                                                          | Potatoes cooked in broth until tender.                                        |
+| 3. Purée soup, add milk, and season.                                                      | Blend soup, stir in milk, and season.                                          | Purée soup and mix in milk.                                                   | Purée soup, add milk, and adjust seasoning.                                         | Soup blended, milk added, and seasoned.                                       |
+|                                                                                           |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| **Mahi-Mahi in Tomato Olive Sauce**                                                       |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| 1. Sauté onion in oil until browned (~4 mins).                                            | Cook onion until translucent.                                                  | Brown onion in oil.                                                           | Sauté onion until soft.                                                            | Onion cooked in oil until tender.                                             |
+| 2. Add fish to tomato sauce; simmer covered for 9 mins.                                   | Poach fish in tomato sauce.                                                    | Cook fish in sauce until done.                                                | Simmer fish in sauce until flaky.                                                  | Fish simmered in tomato sauce.                                                |
+|                                                                                           |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| **Spicy-Sweet Kumquats**                                                                  |                                                                                 |                                                                               |                                                                                    |                                                                                |
+| 1. Dip kumquats in egg whites, then chili-sugar mix.                                      | Coat kumquats in spiced sugar.                                                 | Sugar-coat kumquats with chili.                                               | Dip kumquats in sugar and chili.                                                   | Kumquats coated in chili sugar.                                               |
+
+---
+
+### **Key Observations**:  
+- **BART** tends to **generalize** steps while keeping key actions.  
+- **T5** provides **concise, direct** summaries.  
+- **PEGASUS** focuses on **clarity and completeness**.  
+- **LED** (Longformer) offers **balanced, slightly detailed** summaries.  
+
+Would you like any refinements or additional recipes summarized?
 
 
 
@@ -149,10 +182,10 @@ A continuación se presentan algunos resúmenes por cada modelo:
 
 ## Herramientas y Librerías Usadas del Proyecto
 
-- **Procesamiento de texto:** NLTK, SpaCy, Transformers.
-- **Aprendizaje Automático:** PyTorch, Scikit-learn. (Otra alternativa sería usar PySpark)
-- **Validación de Datos:** Pydantic.
-- **Visualización:** Matplotlib.
+- **Procesamiento de texto:** NLTK, SpaCy, Transformers
+- **Aprendizaje Automático:** PyTorch, Scikit-learn
+- **Validación de Datos:** Pydantic
+- **Visualización:** Matplotlib
 
 ## Bibliografía
 
