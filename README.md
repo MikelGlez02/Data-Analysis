@@ -126,21 +126,23 @@ El rendimiento de los modelos se puede observar los excels. Hay un excel que rec
 
 Se pueden observar diversos patrones al cambiar de datos: la MAE del modelo bert pre entrenado con fine tunning resulta en una MAE de 2.82. Este resultado es la media -1, ya que el predictor siempre ha tenido como salida 1, y por tanto el MAE es la media -1. Esto sucede porque el modelo esta prediciendo siempre uno, lo que nos indica que la cabeza de regresion no se ha implementado correctamente. Los mejores resultados parecen ser obtenidos por BERT cuando se utilizan los datos adecuados. Es probable que un mejor rendimiento se logre aumentando el max length de BERT, siempre que se disponga de un equipo más potente. Por otro lado, ampliar aún más la red neuronal compleja podría también mejorar su rendimiento. En contraste, la red KNN resulta poco expresiva al manejar grandes volúmenes de datos.
 
-## Convocatoria Extraordinaria: Extensión del Proyecto. ¿Qué diferencias hay?
+## Convocatoria Extraordinaria: Extensión del Proyecto.
 
 Como se ha mencionado antes, con el objetivo de mejorar la experiencia del usuario al seguir las recetas con resúmenes más breves, he implementado un resumidor preentrenado mediante Hugging Face para prevenir así pasos repetitivos y redundantes, como respuestas extensas. Se van a utilizar 4 modelos preentrenados:
-- **Bidirectional and Auto-Regressive Transformers (BART)**: Mantiene un equilibrio entre calidad gramatical y fidelidad, puede manejar entradas de longitud moderada.
+- **Bidirectional and Auto-Regressive Transformers (BART)**: Mantiene un equilibrio entre calidad gramatical y fidelidad de manera general, por lo que puede manejar entradas de longitud moderada.
 - **Text-To-Text Transfer Transformer (T5)**: Un modelo que se ha entrenado en tareas NLP y es adaptable a múltiples tareas, incluyendo resumen.
 - **Pre-training with Extracted Gap-sentences for Abstractive Summarization (PEGASUS)**: Entrenado con estrategia que simula el resumen real (gap-sentence), genera textos compactos con alta relevancia, y rinde excelente en benchmarks de resumen (como XSum, CNN/DailyMail).
 - **Longformer Encoder-Decoder (LED)**: Diseñado para entradas muy largas (hasta 16,384 tokens o más), por lo que es ideal para datos extensos. Usa atención local y global eficiente, lo que le permite escalar sin saturar memoria.
 
 Para realizar esto de forma práctica, simplemente se usa la función pipeline con el modelo definido en concreto que se debe utilizar, ya sea para BART (```facebook/bart-large-cnn```), T5 (```t5-small```), PEGASUS (```google/pegasus-xsum```) y LED (```allenai/led-base-16384```). Se aplicaron a las instrucciones de algunas recetas para así comprobar cómo de coherente y claras son las frases resumidas entre 75 y 100 palabras, por ejemplo. 
 
-### Resultados
+### Convocatoria Extraordinaria: Resultados
+
+Con esto, se han tomado algunos ejemplos 
 
 A continuación se presentan algunos resúmenes por cada modelo:
 
-### **Recipe Summaries Comparison Table**  
+### **Tabla de Comparación de los Resumidores con algunos ejemplos**  
 
 | **Texto Original (Steps)**                                                                 | **Resumen BART**                                                                 | **Resumen T5**                                                                 | **Resumen PEGASUS**                                                                 | **Resumen LED**                                                                 |
 |-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
@@ -167,18 +169,13 @@ A continuación se presentan algunos resúmenes por cada modelo:
 
 ---
 
-### **Key Observations**:  
-- **BART** tends to **generalize** steps while keeping key actions.  
-- **T5** provides **concise, direct** summaries.  
-- **PEGASUS** focuses on **clarity and completeness**.  
-- **LED** (Longformer) offers **balanced, slightly detailed** summaries.  
+A partir de los resultados, se puede concluir que los modelos de resumen automático (**BART, T5, PEGASUS y LED**) presentan diferencias claras:
+- **BART**: Estos resúmenes generalizados conserva la esencia principal del texto (*"Cook lentils with vegetables and stock until tender."*), es útil para una visión rápida pero pierde especificidades, como tiempos o cantidades exactos.
+- **T5**: Resúmenes concisos y directos, es similar a BART pero es más claro y estructurado (*"Simmer lentils with veggies and stock."*), la desventaja principal es su brevedad y simplificación de los pasos de recetas.
+- **PEGASUS**: Son tanto completos en especificidades como naturales, equilibrando claridad y fluidez (*"Boil lentils with stock and vegetables until soft."*), pero requiere el uso de más tokens, teniendo un tiempo de ejecución mucho mayor que los demás. De ello, debemos garantizar que no gaste toda la memoria del CPU del ordenador.
+- **LED**: Son resúmenes balanceados que recopilan todos los detalles técnicos de las instrucciones de recetas (*"Lentils cooked with stock, celery, carrot, and thyme."*), pero no todos los ejemplos funcionan ya que son más estrictos para la longitud de las instrucciones de recetas.
 
-Would you like any refinements or additional recipes summarized?
-
-
-
-
-
+De ello, se puede concluir que se utilizaría PEGASUS para recetas si el texto quiere que sea lo más natural posible, LED si se necesitan detalles más técnicos para cantidades o tiempos concretos que sean necesarios mencionar en la receta, y finalmente BART/T5 para resumir textos grandes en ultra-rápidos. Comparando los cuatro modelos como tal, con un ordenador más potente, LED sería el ideal ya que incluir los detalles exactos (cantidades, tiempos, etc) es esencial para poder seguir las instrucciones de la receta, compaginando así brevedad y claridad. Eso sí, se debe especificar en la variable `max_length` qué longitud utilizar, por lo que se debe de ajustar un parámetro estándar, además de la GPU para velocidad (`model.to("cuda")`) previamente mencionado en la parte ordinaria.
 
 ## Herramientas y Librerías Usadas del Proyecto
 
