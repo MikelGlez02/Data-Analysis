@@ -138,9 +138,7 @@ Para realizar esto de forma práctica, simplemente se usa la función pipeline c
 
 ### Convocatoria Extraordinaria: Resultados
 
-Con esto, se han tomado algunos ejemplos 
-
-A continuación se presentan algunos resúmenes por cada modelo:
+Con esto, se han tomado algunos ejemplos del archivo y hemos usado los modelos mencionados para proceder con los diferentes resultados recopilados en una tabla:
 
 ### **Tabla de Comparación de los Resumidores con algunos ejemplos**  
 
