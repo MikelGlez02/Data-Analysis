@@ -170,7 +170,7 @@ print(correlation_matrix)
 | protein  | 0.632249 | 0.562679 | 1.000000 | 0.426460 |
 | sodium   | 0.473643 | 0.436061 | 0.426460 | 1.000000 |
 
-Se puede apreciar que tanto calorías como grasas tienen una alta correlación (**0.844**), lo que sugiere que alimentos con más calorías tienden a tener más grasa. Por el otro lado, **Proteínas** están moderadamente correlacionadas con calorías (**0.632**) y grasas (**0.563**), y finalmente **Sodio** tiene la correlación más débil con las demás variables. Otros aspectos interesantes es que, el promedio de pasos por receta suele ser de 5.3 aproximadamente, "Salt" es el ingrediente más común, la categoría "Vegetarian" es la más frecuente, y el rating promedio es de 3.88 con una distribución que muestra que muchas recetas tienen ratings altos (75% tienen 4.375 o más).
+Se puede apreciar que tanto calorías como grasas tienen una alta correlación (**0.844**), lo que sugiere que alimentos con más calorías tienden a tener más grasa. Por el otro lado, el atributo de proteínas están moderadamente correlacionadas con calorías (**0.632**) y grasas (**0.563**), y finalmente el atributo sodio tiene la correlación más débil con las demás variables. Otros aspectos interesantes es que, el promedio de pasos por receta suele ser de 5.3 aproximadamente, "Salt" es el ingrediente más común, la categoría "Vegetarian" es la más frecuente, y el rating promedio es de 3.88 con una distribución que muestra que muchas recetas tienen ratings altos (75% tienen 4.375 o más).
 
 ## Convocatoria Extraordinaria: Extensión del Proyecto.
 
